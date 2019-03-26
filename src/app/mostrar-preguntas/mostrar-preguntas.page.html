@@ -4,6 +4,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button [routerLink]="['/']">Home</ion-button>
+<ion-content color="success" fullscreen = true>
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        Auto Manufacturers
+      </ion-list-header>
+  
+      <ion-item allow-empty-selection = true>
+        <ion-label>Cord</ion-label>
+        <ion-radio value="cord">A</ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Duesenberg</ion-label>
+        <ion-radio value="duesenberg"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Hudson</ion-label>
+        <ion-radio value="hudson"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Packard</ion-label>
+        <ion-radio value="packard"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Studebaker</ion-label>
+        <ion-radio value="studebaker"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-button size="small" [routerLink]="['/']">Home</ion-button>
+</ion-footer>
