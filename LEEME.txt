@@ -1,0 +1,7 @@
+GENERACION APK:
+
+Tener bien configurado el PATH de Android.
+npm install --global windows-build-tools
+ionic cordova prepare Android (comando para agregar plataforma Android a tu proyecto)
+cordova platform add Android
+ionic cordova build Android (puede ser sin el comando “ionic ” el cual hace validaciones de código antes de ejecutar el build)
