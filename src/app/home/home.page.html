@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Inicio
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondo-portada">
+  <ion-card class="welcome-card fondo-portada">
+    <ion-img src="/assets/icon/bird.jpg" class="circle-pic"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>Empecemos</ion-card-subtitle>
+      <ion-card-title>Bienvenido a tu test de pureza</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Tendras que completar una breve encuesta, una vez terminada recibiras un diagnotivo de tu estado de pureza realizado por expertos.</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-button [routerLink]="['/mostrar-preguntas']">Ir a preguntas</ion-button>
+</ion-content>
