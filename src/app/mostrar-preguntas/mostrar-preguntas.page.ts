@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
+import { Pregunta } from '../clases/pregunta';
 
 @Component({
   selector: 'app-mostrar-preguntas',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MostrarPreguntasPage implements OnInit {
 
-  constructor() { }
+  preguntas : Pregunta[];
+  constructor(private obtenerPreguntasService : ObtenerPreguntasService ) { }
 
   ngOnInit() {
+    this.getPreguntas();
   }
+
+  //Obtiene preguntas desde un servicio REST
+  getPreguntas(): void{
+    this.obtenerPreguntasService.getPreguntas().subscribe(preguntas=>this.preguntas = preguntas);
+  }
+
+  guardarRespuestas(): void{
+    console.log("llegue a guardarRespuestas: respuestas " + this.preguntas.values);
+}
+
 
 }
