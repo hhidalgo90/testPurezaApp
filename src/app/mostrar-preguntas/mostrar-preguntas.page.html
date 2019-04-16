@@ -5,18 +5,18 @@
 </ion-header>
 
 <ion-content fullscreen = true>
-  <ion-list >
+  <ion-list>
     <ion-radio-group *ngFor="let pregunta of preguntas">
-      <ion-list-header>
+      <ion-list-header >
         {{pregunta.id}} ) {{pregunta.glosa}}
       </ion-list-header>
   
-      <ion-item *ngFor="let opcion of pregunta.opciones" allow-empty-selection = true>
+      <ion-item *ngFor="let opcion of pregunta.opciones">
         <ion-label>{{opcion}}</ion-label>
-        <ion-radio value="{{opcion}}" name="{{pregunta.id}}" [(ngModel)]="pregunta.respuesta"></ion-radio>
+        <ion-radio value="{{opcion}}" name="{{pregunta.id}}"></ion-radio>
       </ion-item>      
     </ion-radio-group>
-  </ion-list>
+  </ion-list> 
 </ion-content>
 
 <ion-footer class="container-fluid bg-4 text-center"> 
