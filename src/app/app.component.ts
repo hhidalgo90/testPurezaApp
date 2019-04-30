@@ -13,6 +13,19 @@ import { HomePage } from './home/home.page';
 export class AppComponent {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = HomePage;
+
+  public appPages = [
+    {
+      title: 'Home',
+      url: '/home' ,
+      icon: 'home'
+    },
+    {
+      title: 'Mostrar Preguntas',
+      url: '/mostrarPreguntas',
+      icon: 'list'
+    }
+  ];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
