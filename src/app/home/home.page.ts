@@ -1,24 +1,23 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav } from 'ionic-angular';
-import { NavController } from 'ionic-angular';
+import { Component } from '@angular/core';
 import {MostrarPreguntasPage} from '../mostrar-preguntas/mostrar-preguntas.page';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  @ViewChild('content') navCtrl: NavController;
   public mostrarPreguntas: any = MostrarPreguntasPage;
   options : any;
-  constructor( private camera: Camera) {
+  public titulo = "Home";
+  constructor( private camera: Camera, private router: Router) {
 
   }
 
 
   public obtenerPreguntas() {
-    this.navCtrl.setRoot(this.mostrarPreguntas);
+    this.router.navigate(['/mostrarPreguntas']);
   }
 
     //Utilizar la camara del celu.

@@ -10,6 +10,7 @@ import { Pregunta } from '../clases/pregunta';
 export class MostrarPreguntasPage implements OnInit {
 
   preguntas : Pregunta[];
+  public titulo = "Test Pureza";
   constructor(private obtenerPreguntasService : ObtenerPreguntasService ) { }
 
   ngOnInit() {

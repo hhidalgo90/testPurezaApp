@@ -10,9 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Camera } from '@ionic-native/camera/ngx';
 import { MostrarPreguntasPage } from './mostrar-preguntas/mostrar-preguntas.page';
+import { HomePage } from './home/home.page';
 
 @NgModule({
-  declarations: [AppComponent,MostrarPreguntasPage],
+  declarations: [AppComponent,MostrarPreguntasPage,HomePage],
   entryComponents: [MostrarPreguntasPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
