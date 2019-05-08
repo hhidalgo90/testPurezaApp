@@ -1,15 +1,14 @@
 <ion-header>
-    <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
   <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
     <ion-title>{{titulo}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen = true>
-  <ion-list>
-    <ion-radio-group *ngFor="let pregunta of preguntas">
+  <ion-list radio-group *ngFor="let pregunta of preguntas" [(ngModel)]="unit" name="unit">
       <ion-list-header >
         {{pregunta.id}} ) {{pregunta.glosa}}
       </ion-list-header>
@@ -17,8 +16,7 @@
       <ion-item *ngFor="let opcion of pregunta.opciones">
         <ion-label>{{opcion}}</ion-label>
         <ion-radio value="{{opcion}}" name="{{pregunta.id}}"></ion-radio>
-      </ion-item>      
-    </ion-radio-group>
+      </ion-item>
   </ion-list> 
 </ion-content>
 

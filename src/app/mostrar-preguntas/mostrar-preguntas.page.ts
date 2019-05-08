@@ -10,6 +10,7 @@ import { Pregunta } from '../clases/pregunta';
 export class MostrarPreguntasPage implements OnInit {
 
   preguntas : Pregunta[];
+  unit ="";
   public titulo = "Test Pureza";
   constructor(private obtenerPreguntasService : ObtenerPreguntasService ) { }
 
@@ -24,6 +25,7 @@ export class MostrarPreguntasPage implements OnInit {
 
   guardarRespuestas(): void{
     console.log("llegue a guardarRespuestas: respuestas " + this.preguntas.values);
+    console.log("llegue a guardarRespuestas: unit " + this.unit);
 }
 
 }
