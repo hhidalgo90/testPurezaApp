@@ -24,8 +24,7 @@ export class MostrarPreguntasPage implements OnInit {
   }
 
   guardarRespuestas(): void{
-    console.log("llegue a guardarRespuestas: respuestas " + this.preguntas.values);
-    console.log("llegue a guardarRespuestas: unit " + this.unit);
+    console.log("llegue a guardarRespuestas: respuestas " + this.preguntas[0].respuesta);
 }
 
 }

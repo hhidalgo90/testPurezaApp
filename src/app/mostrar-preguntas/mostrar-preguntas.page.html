@@ -8,7 +8,9 @@
 </ion-header>
 
 <ion-content fullscreen = true>
-  <ion-list radio-group *ngFor="let pregunta of preguntas" [(ngModel)]="unit" name="unit">
+    <form>
+  <ion-list *ngFor="let pregunta of preguntas" >
+      <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
       <ion-list-header >
         {{pregunta.id}} ) {{pregunta.glosa}}
       </ion-list-header>
@@ -17,8 +19,11 @@
         <ion-label>{{opcion}}</ion-label>
         <ion-radio value="{{opcion}}" name="{{pregunta.id}}"></ion-radio>
       </ion-item>
+      </ion-radio-group>
   </ion-list> 
+</form>
 </ion-content>
+
 
 <ion-footer class="container-fluid bg-4 text-center"> 
 <ion-grid>
