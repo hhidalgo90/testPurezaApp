@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+          <ion-title>
+              {{titulo}}
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+<ion-content fullscreen = true class="datosPersonales">
+    <ion-item>
+        <ion-label>Nombre</ion-label>
+        <ion-input type="text" placeholder="Nombre o nickname" color="secondary" background-color="secondary" value="{{nombre}}" [(ngModel)]="nombre" name="respuesta"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Edad</ion-label>
+        <ion-input type="number" placeholder="Cuentanos tu edad"value="{{edad}}" [(ngModel)]="edad" name="respuest2a"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="email" placeholder="Escribe tu email" value="{{email}}" [(ngModel)]="email" name="respuesta3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Sexo</ion-label>
+        <ion-select placeholder="Select One" [(ngModel)]="sexo" name="respuestdda"> 
+          <ion-select-option value="{{sexo.id}}" *ngFor="let sexo of sexos">{{sexo.texto}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+</ion-content>
+
+<ion-footer class="container-fluid bg-4 text-center"> 
+    <ion-grid>
+      <ion-row>
+          <ion-col size="12" size-lg offset="3">
+            <p>By Tito<a href="https://www.linkedin.com/in/hector-hidalgo-espinoza-051a8696/" target="_blank">  Hector Hidalgo E.</a></p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col align-self-start>
+              <ion-button size="small" (click)="navigate()">Ir a preguntas</ion-button>          
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+    </ion-footer>
+
+
