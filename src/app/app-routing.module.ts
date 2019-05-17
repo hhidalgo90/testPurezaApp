@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { MostrarPreguntasPage } from './mostrar-preguntas/mostrar-preguntas.page';
+import { DatosPersonalesPage } from './datos-personales/datos-personales.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePage },
-  { path: 'mostrarPreguntas', component: MostrarPreguntasPage }
+  { path: 'mostrarPreguntas', component: MostrarPreguntasPage },
+  { path: 'datosPersonales', component: DatosPersonalesPage }
 ];
 
 @NgModule({

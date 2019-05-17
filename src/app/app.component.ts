@@ -17,8 +17,8 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Mostrar Preguntas',
-      url: '/mostrarPreguntas',
+      title: 'Empezar test',
+      url: '/datosPersonales',
       icon: 'list'
     }
   ];
