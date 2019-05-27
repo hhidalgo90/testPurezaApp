@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePage },
   { path: 'mostrarPreguntas', component: MostrarPreguntasPage },
-  { path: 'datosPersonales', component: DatosPersonalesPage }
+  { path: 'datosPersonales', component: DatosPersonalesPage },  { path: 'modal-preguntas', loadChildren: './modal-preguntas/modal-preguntas.module#ModalPreguntasPageModule' }
+
 ];
 
 @NgModule({

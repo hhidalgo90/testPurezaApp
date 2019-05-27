@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {MostrarPreguntasPage} from '../mostrar-preguntas/mostrar-preguntas.page';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,7 +13,7 @@ export class HomePage {
   public mostrarPreguntas: any = MostrarPreguntasPage;
   options : any;
   public titulo = "Home";
-  constructor( private camera: Camera, private router: Router) {
+  constructor( private camera: Camera, private router: Router, public modalController: ModalController) {
 
   }
 
@@ -38,5 +40,22 @@ export class HomePage {
        }, (err) => {
         console.log("Ocurrio un error: " + err);
        });
+    }
+
+    async presentModal() {
+      const modal = await this.modalController.create({
+        component: ModalPreguntasPage,
+        componentProps: { 'titulo': "Lea antes de empezar",
+      'texto' : "Tendras que completar una breve encuesta, una vez terminada recibiras un diagnotivo de tu estado de pureza realizado por expertos." }
+      });
+       modal.present();
+       const { data } = await modal.onDidDismiss();
+       console.log(data);
+       if(data.result == true){
+        this.router.navigate(['/mostrarPreguntas']);
+       }
+       else{
+        this.router.navigate(['/home']);
+       }
     }
 }

@@ -13,10 +13,11 @@ import { MostrarPreguntasPage } from './mostrar-preguntas/mostrar-preguntas.page
 import { DatosPersonalesPage } from './datos-personales/datos-personales.page';
 import { HomePage } from './home/home.page';
 import { FormsModule } from '@angular/forms';
+import { ModalPreguntasPage } from './modal-preguntas/modal-preguntas.page';
 
 @NgModule({
-  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage],
-  entryComponents: [MostrarPreguntasPage],
+  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage],
+  entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule],
   providers: [
     StatusBar,

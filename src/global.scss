@@ -25,3 +25,16 @@
     max-height: 35vh;
     overflow: hidden;
   }
+
+  .toolbar-background {
+    background-size: 8%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 33px;
+    align-items: center;
+   }
+
+   .spacer {
+    height: 10px;
+    background-color: white;
+   }
