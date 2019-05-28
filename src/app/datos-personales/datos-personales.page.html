@@ -10,21 +10,36 @@
       </ion-header>
 
 <ion-content fullscreen = true class="datosPersonales">
-    <ion-item>
+    <ion-grid>
+  <ion-row>
+    <ion-col size="12" size-lg offset="0">      
+    <ion-item>        
         <ion-label>Nombre</ion-label>
         <ion-input type="text" placeholder="Nombre o nickname" color="secondary" background-color="secondary" value="{{nombre}}" [(ngModel)]="nombre" name="respuesta"></ion-input>
     </ion-item>
+  </ion-col>
+</ion-row>
 
+<ion-row>
+    <ion-col size="12" size-lg offset="0">  
     <ion-item>
         <ion-label>Edad</ion-label>
         <ion-input type="number" placeholder="Cuentanos tu edad"value="{{edad}}" [(ngModel)]="edad" name="respuest2a"></ion-input>
     </ion-item>
+  </ion-col>
+</ion-row>
 
+<ion-row>
+    <ion-col size="12" size-lg offset="0">  
     <ion-item>
         <ion-label>Email</ion-label>
         <ion-input type="email" placeholder="Escribe tu email" value="{{email}}" [(ngModel)]="email" name="respuesta3"></ion-input>
     </ion-item>
+  </ion-col>
+</ion-row>
 
+<ion-row>
+    <ion-col size="12" size-lg offset="0">  
     <ion-item>
         <ion-label>Sexo</ion-label>
         <ion-select placeholder="Select One" [(ngModel)]="sexo" name="respuestdda"> 
@@ -32,7 +47,9 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-
+    </ion-col>
+  </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-footer class="container-fluid bg-4 text-center"> 
@@ -43,8 +60,8 @@
           </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col align-self-start>
-              <ion-button size="small" (click)="navigate()">Ir a preguntas</ion-button>          
+            <ion-col align-right>
+              <ion-button size="small" (click)="navigate()">Siguiente</ion-button>          
             </ion-col>
           </ion-row>
       </ion-grid>
