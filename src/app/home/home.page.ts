@@ -52,7 +52,7 @@ export class HomePage {
        const { data } = await modal.onDidDismiss();
        console.log(data);
        if(data.result == true){
-        this.router.navigate(['/mostrarPreguntas']);
+        this.router.navigate(['/datosPersonales']);
        }
        else{
         this.router.navigate(['/home']);
