@@ -8,8 +8,7 @@
 </ion-header>
 
 <ion-content fullscreen = true>
-    <form>
-  <ion-list *ngFor="let pregunta of preguntas" >
+  <ion-list *ngFor="let pregunta of preguntas | slice: inicio:tope">
       <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
       <ion-list-header >
         {{pregunta.id}} ) {{pregunta.glosa}}
@@ -20,8 +19,7 @@
         <ion-radio value="{{opcion}}" name="{{pregunta.id}}"></ion-radio>
       </ion-item>
       </ion-radio-group>
-  </ion-list> 
-</form>
+  </ion-list>
 </ion-content>
 
 
@@ -37,7 +35,10 @@
           <ion-button size="small" [routerLink]="['/']">Home</ion-button>          
         </ion-col>
         <ion-col size="6" size-lg offset="3">
-          <ion-button size="small" (click)="guardarRespuestas(preguntas)">Guardar respuestas</ion-button>
+            <ion-button *ngIf="mostrarBtnSiguiente" size="small" (click)="siguientePregunta()">Siguiente</ion-button>
+          </ion-col>
+        <ion-col size="6" size-lg offset="3">
+          <ion-button *ngIf="mostrarBtnFinalizar" size="small" (click)="guardarRespuestas(preguntas)">Guardar respuestas</ion-button>
         </ion-col>
       </ion-row>
   </ion-grid>
