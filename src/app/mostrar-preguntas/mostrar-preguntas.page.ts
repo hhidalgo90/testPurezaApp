@@ -17,6 +17,7 @@ export class MostrarPreguntasPage implements OnInit {
   numeroPreguntas : number;
   mostrarBtnSiguiente : boolean;
   mostrarBtnFinalizar : boolean;
+  mostrarBtnAtras : boolean;
 
   constructor(private obtenerPreguntasService : ObtenerPreguntasService ) { }
 
@@ -26,6 +27,7 @@ export class MostrarPreguntasPage implements OnInit {
     this.tope = 5;
     this.mostrarBtnSiguiente = true; 
     this.mostrarBtnFinalizar = false;
+    this.mostrarBtnAtras = false;
   }
 
   //Obtiene preguntas desde un servicio REST
@@ -41,14 +43,37 @@ export class MostrarPreguntasPage implements OnInit {
 
 siguientePregunta(){
   this.numeroPreguntas = this.preguntas.length;
-  if(this.tope < this.numeroPreguntas){
-    this.inicio+=5;
-    this.tope+=5;
+  this.inicio+=5;
+  this.tope+=5;
+  if(this.tope != this.numeroPreguntas){
+    if(this.inicio > 0){
+      this.mostrarBtnAtras = true;
+    }
   }
   else{
     console.log("Se acabo esta mierda");
     this.mostrarBtnSiguiente = false;
     this.mostrarBtnFinalizar = true;
+  }
+}
+
+preguntaAnterior(){
+  this.numeroPreguntas = this.preguntas.length;
+  this.inicio-=5;
+  this.tope-=5;
+  if( this.inicio > 0){
+    if(this.tope != this.numeroPreguntas){
+      this.mostrarBtnSiguiente = true;
+      this.mostrarBtnFinalizar = false;
+    }
+  }
+  else{
+    console.log("Se acabo esta mierda");
+    this.mostrarBtnSiguiente = true;
+    this.mostrarBtnFinalizar = false;
+    if(this.inicio <= 0){
+      this.mostrarBtnAtras = false;
+    }
   }
 }
 }
