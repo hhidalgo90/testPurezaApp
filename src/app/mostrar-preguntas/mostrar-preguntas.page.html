@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content overflow-scroll="true">
+<ion-content>
   <ion-list *ngFor="let pregunta of preguntas | slice: inicio:tope">
       <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
       <ion-list-header >
