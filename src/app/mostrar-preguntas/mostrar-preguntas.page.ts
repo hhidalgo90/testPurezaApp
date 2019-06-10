@@ -76,4 +76,10 @@ preguntaAnterior(){
     }
   }
 }
+
+doInfinite(infiniteScrollEvent) {
+  infiniteScrollEvent.target.complete();
+  this.inicio +=5;
+  this.tope += 5;
+}
 }

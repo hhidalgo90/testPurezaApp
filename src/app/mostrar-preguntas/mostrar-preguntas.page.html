@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-      </ion-buttons>
     <ion-title><ion-img src="/assets/icon/logo.png" class="toolbar-background"></ion-img></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content>
   <ion-list *ngFor="let pregunta of preguntas | slice: inicio:tope">
       <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
       <ion-list-header >
@@ -20,6 +20,9 @@
       </ion-item>
       </ion-radio-group>
   </ion-list>
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
 </ion-content>
 
 
