@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
 import { Pregunta } from '../clases/pregunta';
+import { Router } from '@angular/router'; //Router de angular para hacer navegacion.
+import { ModalController } from '@ionic/angular'; //Libreria para utilizar modal.
+import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //Pagina utilizada como modal.
 
 @Component({
   selector: 'app-mostrar-preguntas',
@@ -18,8 +21,9 @@ export class MostrarPreguntasPage implements OnInit {
   mostrarBtnSiguiente : boolean;
   mostrarBtnFinalizar : boolean;
   mostrarBtnAtras : boolean;
+  public mostrarPreguntas: any = MostrarPreguntasPage;
 
-  constructor(private obtenerPreguntasService : ObtenerPreguntasService ) { }
+  constructor(private obtenerPreguntasService : ObtenerPreguntasService,private router: Router, public modalController: ModalController ) { }
 
   ngOnInit() {
     this.getPreguntas();
@@ -41,11 +45,14 @@ export class MostrarPreguntasPage implements OnInit {
     console.log("llegue a guardarRespuestas: respuestas " + this.preguntas[0].respuesta);
 }
 
+/**
+ * Metodo para avanzar en el listado de preguntas.
+ */
 siguientePregunta(){
   this.numeroPreguntas = this.preguntas.length;
   this.inicio+=5;
   this.tope+=5;
-  if(this.tope != this.numeroPreguntas){
+  if(this.tope < this.numeroPreguntas){
     if(this.inicio > 0){
       this.mostrarBtnAtras = true;
     }
@@ -57,6 +64,9 @@ siguientePregunta(){
   }
 }
 
+/**
+ * Metodo para volver atras en el listado de preguntas.
+ */
 preguntaAnterior(){
   this.numeroPreguntas = this.preguntas.length;
   this.inicio-=5;
@@ -77,9 +87,34 @@ preguntaAnterior(){
   }
 }
 
+/**
+ * Metodo que obtiene evento de scroll en el content.
+ */
 doInfinite(infiniteScrollEvent) {
   infiniteScrollEvent.target.complete();
-  this.inicio +=5;
-  this.tope += 5;
+  this.inicio =0;
+  this.tope = 5;
+}
+
+/**
+ * Metodo para mostrar el modal al finalizar las preguntas.
+ */
+async presentModal() {
+  const modal = await this.modalController.create({
+    component: ModalPreguntasPage,
+    componentProps: { 
+      'titulo': "Esta seguro que desea terminar con el test?",
+      'texto' : "Si seleccionas Si no podras modificar tus respuestas." }
+  });
+   modal.present();
+   const { data } = await modal.onDidDismiss();
+   console.log(data);
+   if(data.result == true){
+    this.guardarRespuestas();
+    this.router.navigate(['/home']);
+   }
+   else{
+    this.router.navigate(['/mostrarPreguntas']);
+   }
 }
 }

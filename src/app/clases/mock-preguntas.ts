@@ -50,6 +50,8 @@ export const MOCKPREGUNTAS : Pregunta[] = [
     { id: 24, glosa: 'Es usted hombre o mujer' ,
     opciones : ['A','B','C','D'],respuesta : ""},
     { id: 25, glosa: 'Es usted hombre o mujer' ,
+    opciones : ['A','B','C','D'],respuesta : ""},
+    { id: 26, glosa: 'Es usted hombre o mujer' ,
     opciones : ['A','B','C','D'],respuesta : ""}
     
 ];

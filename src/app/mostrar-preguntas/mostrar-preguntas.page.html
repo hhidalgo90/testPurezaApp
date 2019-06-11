@@ -40,7 +40,7 @@
         <ion-col size="4" size-lg offset="3">
             <ion-button *ngIf="mostrarBtnSiguiente" (click)="siguientePregunta()">Siguiente</ion-button>
 
-            <ion-button color="success" *ngIf="mostrarBtnFinalizar" (click)="guardarRespuestas(preguntas)">Finalizar</ion-button>
+            <ion-button color="success" *ngIf="mostrarBtnFinalizar" (click)="presentModal()">Finalizar</ion-button>
         </ion-col>
       </ion-row>
   </ion-grid>
