@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from '../clases/usuario'
+import { Pregunta } from '../clases/pregunta';
 
 @Component({
   selector: 'app-datos-personales',
@@ -8,10 +10,16 @@ import { Router } from '@angular/router';
 })
 export class DatosPersonalesPage implements OnInit {
 public titulo = "Datos Personales";
-nombre:"";
-edad:"";
-email:"";
-sexo:"";
+pregunta : Pregunta[];
+public datosUsuario : Usuario[] =[
+  {
+    nombre : "",
+    edad : 0,
+    email : "",
+    sexo : "",
+    preguntas : this.pregunta
+  }
+];
 
 sexos: any[] = [
   {
@@ -27,13 +35,15 @@ sexos: any[] = [
     texto: 'Otro'
   }
 ];
-  constructor(private router: Router) { }
+  constructor(private router: Router){
+   }
 
   ngOnInit() {
   }
 
   navigate(){
-    console.log("llegue navigate : nombre" + this.nombre + " edad: " + this.edad + " email: " + this.email + " sexo" + this.sexo);
+    //console.log("llegue navigate : nombre: " + this.datosUsuario[0].nombre + " edad: " + this.datosUsuario[0].edad + " email: " + this.datosUsuario[0].email + " sexo: " + this.datosUsuario[0].sexo);
+    console.log(this.datosUsuario);
     this.router.navigate(['/mostrarPreguntas'])
   }
 

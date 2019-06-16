@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
 import { Pregunta } from '../clases/pregunta';
 import { Router } from '@angular/router'; //Router de angular para hacer navegacion.
-import { ModalController } from '@ionic/angular'; //Libreria para utilizar modal.
+import { ModalController, IonContent } from '@ionic/angular'; //Libreria para utilizar modal.
 import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //Pagina utilizada como modal.
 
 @Component({
@@ -11,6 +11,7 @@ import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //
   styleUrls: ['./mostrar-preguntas.page.scss'],
 })
 export class MostrarPreguntasPage implements OnInit {
+  @ViewChild(IonContent) content: IonContent; //Se usa para obtener contenido y despues hacer scroll top.
 
   preguntas : Pregunta[];
   unit ="";
@@ -56,6 +57,7 @@ siguientePregunta(){
     if(this.inicio > 0){
       this.mostrarBtnAtras = true;
     }
+    this.content.scrollToTop(600);
   }
   else{
     console.log("Se acabo esta mierda");
@@ -76,6 +78,7 @@ preguntaAnterior(){
       this.mostrarBtnSiguiente = true;
       this.mostrarBtnFinalizar = false;
     }
+    this.content.scrollToTop(600);
   }
   else{
     console.log("Se acabo esta mierda");

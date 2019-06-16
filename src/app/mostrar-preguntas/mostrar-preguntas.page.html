@@ -11,7 +11,7 @@
   <ion-list *ngFor="let pregunta of preguntas | slice: inicio:tope">
       <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
       <ion-list-header >
-        {{pregunta.id}} ) {{pregunta.glosa}}
+        {{pregunta.idPregunta}} ) {{pregunta.glosa}}
       </ion-list-header>
   
       <ion-item *ngFor="let opcion of pregunta.opciones">

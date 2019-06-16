@@ -1,5 +1,5 @@
 export class Pregunta {
-    id: number;
+    idPregunta: number;
     glosa: String;
     opciones: String[];
     respuesta: String;
