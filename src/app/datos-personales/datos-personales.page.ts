@@ -11,15 +11,14 @@ import { Pregunta } from '../clases/pregunta';
 export class DatosPersonalesPage implements OnInit {
 public titulo = "Datos Personales";
 pregunta : Pregunta[];
-public datosUsuario : Usuario[] =[
-  {
+public datosUsuario = {
     nombre : "",
     edad : 0,
     email : "",
     sexo : "",
     preguntas : this.pregunta
   }
-];
+
 
 sexos: any[] = [
   {
