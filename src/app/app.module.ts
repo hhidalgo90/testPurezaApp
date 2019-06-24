@@ -14,11 +14,20 @@ import { DatosPersonalesPage } from './datos-personales/datos-personales.page';
 import { HomePage } from './home/home.page';
 import { FormsModule } from '@angular/forms';
 import { ModalPreguntasPage } from './modal-preguntas/modal-preguntas.page';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { firebaseConfig } from './credenciales-firebase';
 
 @NgModule({
   declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage],
   entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule],
   providers: [
     StatusBar,
     SplashScreen,

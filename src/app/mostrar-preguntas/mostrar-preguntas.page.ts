@@ -2,7 +2,7 @@ import { Component, OnInit ,ViewChild} from '@angular/core';
 import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
 import { Pregunta } from '../clases/pregunta';
 import { Router } from '@angular/router'; //Router de angular para hacer navegacion.
-import { ModalController, IonContent } from '@ionic/angular'; //Libreria para utilizar modal.
+import { ModalController, IonContent, LoadingController, AlertController } from '@ionic/angular'; //Libreria para utilizar modal. LoadingController, AlertController para mostrar un 'cargando' y mostrar alert en caso de error
 import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //Pagina utilizada como modal.
 
 @Component({
@@ -23,8 +23,10 @@ export class MostrarPreguntasPage implements OnInit {
   mostrarBtnFinalizar : boolean;
   mostrarBtnAtras : boolean;
   public mostrarPreguntas: any = MostrarPreguntasPage;
+  public listaUsuarios;
 
-  constructor(private obtenerPreguntasService : ObtenerPreguntasService,private router: Router, public modalController: ModalController ) { }
+  constructor(private obtenerPreguntasService : ObtenerPreguntasService,private router: Router, public modalController: ModalController, public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController ) { }
 
   ngOnInit() {
     this.getPreguntas();
@@ -36,9 +38,12 @@ export class MostrarPreguntasPage implements OnInit {
   }
 
   //Obtiene preguntas desde un servicio REST
-  getPreguntas(): void{
+  async getPreguntas() {
+    this.listaUsuarios = this.obtenerPreguntasService.obtenerPreguntasDesdeFirebase().valueChanges();
+    console.log(this.listaUsuarios);
+
     this.obtenerPreguntasService.getPreguntas().subscribe(resultado=>{
-      this.preguntas = resultado
+      this.preguntas = resultado;      
     });
   }
 
