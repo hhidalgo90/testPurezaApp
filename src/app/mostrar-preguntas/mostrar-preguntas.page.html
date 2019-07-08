@@ -8,7 +8,7 @@
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content>
-  <ion-list *ngFor="let pregunta of preguntas | slice: inicio:tope">
+  <ion-list *ngFor="let pregunta of listaPreguntas | slice: inicio:tope">
       <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
       <ion-list-header >
         {{pregunta.idPregunta}} ) {{pregunta.glosa}}

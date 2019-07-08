@@ -3,4 +3,5 @@ export class Pregunta {
     glosa: String;
     opciones: String[];
     respuesta: String;
+    
 }

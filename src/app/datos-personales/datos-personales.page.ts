@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../clases/usuario'
 import { Pregunta } from '../clases/pregunta';
+import { AbstractControl, ValidationErrors, FormControl, Validators, ReactiveFormsModule, FormsModule, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-datos-personales',
@@ -12,6 +13,21 @@ export class DatosPersonalesPage implements OnInit {
 public titulo = "Datos Personales";
 pregunta : Pregunta[];
 public datosUsuario = new Usuario;
+mensajeError : String;
+formUser : FormGroup;
+
+validation_messages = {
+  'nombreUser': [
+      { type: 'required', message: 'Username is required.' },
+      { type: 'minlength', message: 'Username must be at least 5 characters long.' },
+      { type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
+      { type: 'pattern', message: 'Your username must contain only numbers and letters.' },
+      { type: 'validUsername', message: 'Your username has already been taken.' }
+    ],
+    'name': [
+      { type: 'required', message: 'Name is required.' }
+    ]
+  };
 
 sexos: any[] = [
   {
@@ -28,15 +44,38 @@ sexos: any[] = [
   }
 ];
   constructor(private router: Router){
+
    }
 
   ngOnInit() {
+    let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    this.formUser = new FormGroup({
+      nombreUser: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(10)]),
+      edadUser: new FormControl('', [Validators.required]),
+      emailUser: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)]),
+      sexoUser: new FormControl('', [Validators.required])      
+    });
   }
 
   navigate(){
-    //console.log("llegue navigate : nombre: " + this.datosUsuario[0].nombre + " edad: " + this.datosUsuario[0].edad + " email: " + this.datosUsuario[0].email + " sexo: " + this.datosUsuario[0].sexo);
     console.log(this.datosUsuario);
-    this.router.navigate(['/mostrarPreguntas'])
+    //this.validarFormulario();
+    this.router.navigate(['/mostrarPreguntas']);
+  }
+
+  validarFormulario(){
+    console.log("validar form");
+
+    if(this.datosUsuario.edad == undefined || this.datosUsuario.edad<=0 || this.datosUsuario.nombre === ""){
+      this.mensajeError = "Todos los datos son obligatorios!";
+      if(this.formUser.get('nombreUser').hasError('minlength') || this.formUser.get('nombreUser').hasError('maxlength') ||this.formUser.get('nombreUser').hasError('pattern') ||this.formUser.get('nombreUser').hasError('required')){
+        console.log("datos qlos malos");
+      }
+      return false;
+    }
+    else{
+      return true;
+    }
   }
 
 }

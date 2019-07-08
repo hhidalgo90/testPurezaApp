@@ -3,12 +3,16 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { MostrarPreguntasPage } from './mostrar-preguntas/mostrar-preguntas.page';
 import { DatosPersonalesPage } from './datos-personales/datos-personales.page';
+import { MapaPage } from './mapa/mapa.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePage },
   { path: 'mostrarPreguntas', component: MostrarPreguntasPage },
-  { path: 'datosPersonales', component: DatosPersonalesPage },  { path: 'modal-preguntas', loadChildren: './modal-preguntas/modal-preguntas.module#ModalPreguntasPageModule' }
+  { path: 'datosPersonales', component: DatosPersonalesPage },
+  { path: 'modal-preguntas', loadChildren: './modal-preguntas/modal-preguntas.module#ModalPreguntasPageModule' },
+  { path: 'mapa', component : MapaPage }
+
 
 ];
 

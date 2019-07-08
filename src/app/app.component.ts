@@ -20,7 +20,13 @@ export class AppComponent {
       title: 'Empezar test',
       url: '/datosPersonales',
       icon: 'list'
+    },
+    {
+      title: 'Mapa',
+      url: '/mapa',
+      icon: 'list'
     }
+    
   ];
   constructor(
     private platform: Platform,

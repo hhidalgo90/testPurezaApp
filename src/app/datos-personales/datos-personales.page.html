@@ -10,46 +10,88 @@
       </ion-header>
 
 <ion-content fullscreen = true class="datosPersonales">
+    <form novalidate [formGroup]="formUser">
     <ion-grid>
   <ion-row>
     <ion-col size="12" size-lg offset="0">      
     <ion-item>        
-        <ion-label>Nombre</ion-label>
-        <ion-input type="text" placeholder="Nombre o nickname" color="secondary" background-color="secondary" value="{{datosUsuario.nombre}}" [(ngModel)]="datosUsuario.nombre" name="nombreUser"></ion-input>
+        <ion-label for="nombreUser">Nombre</ion-label>
+        <ion-input type="text" placeholder="Nombre o nickname" color="secondary" background-color="secondary" value="{{datosUsuario.nombre}}" [(ngModel)]="datosUsuario.nombre"  name="nombreUser" formControlName="nombreUser" required></ion-input>
     </ion-item>
+
+    <ion-item no-lines *ngIf="( formUser.get('nombreUser').hasError('minlength') || formUser.get('nombreUser').hasError('maxlength') ||formUser.get('nombreUser').hasError('pattern') ||formUser.get('nombreUser').hasError('required') ) && formUser.get('nombreUser').touched">
+        <div class="error" *ngIf="formUser.get('nombreUser').hasError('required') && formUser.get('nombreUser').touched">
+          Please input your name
+        </div>
+        <div class="error" *ngIf="formUser.get('nombreUser').hasError('minlength') && formUser.get('nombreUser').touched">
+          Minimum 4 characters
+        </div>
+        <div class="error" *ngIf="formUser.get('nombreUser').hasError('maxlength') && formUser.get('nombreUser').touched">
+          Maximum 30 characters
+        </div>
+        <div class="error" *ngIf="formUser.get('nombreUser').hasError('pattern') && formUser.get('nombreUser').touched">
+          Just use alphabet character
+        </div>
+      </ion-item>
+
+
+
   </ion-col>
 </ion-row>
 
 <ion-row>
     <ion-col size="12" size-lg offset="0">  
     <ion-item>
-        <ion-label>Edad</ion-label>
-        <ion-input type="number" placeholder="Cuentanos tu edad"value="{{datosUsuario.edad}}" [(ngModel)]="datosUsuario.edad" name="edadUser"></ion-input>
+        <ion-label for="edadUser">Edad</ion-label>
+        <ion-input type="number" placeholder="Cuentanos tu edad"value="{{datosUsuario.edad}}" [(ngModel)]="datosUsuario.edad" name="edadUser" formControlName="edadUser" required></ion-input>
     </ion-item>
+
+    <ion-item no-lines *ngIf="(formUser.get('edadUser').hasError('required') ) && formUser.get('edadUser').touched">
+        <div class="error" *ngIf="formUser.get('edadUser').hasError('required') && formUser.get('edadUser').touched">
+          Campo obligatorio
+        </div>
+      </ion-item>
   </ion-col>
 </ion-row>
 
 <ion-row>
     <ion-col size="12" size-lg offset="0">  
     <ion-item>
-        <ion-label>Email</ion-label>
-        <ion-input type="email" placeholder="Escribe tu email" value="{{datosUsuario.email}}" [(ngModel)]="datosUsuario.email" name="emailUser"></ion-input>
+        <ion-label for="emailUser">Email</ion-label>
+        <ion-input type="email" placeholder="Escribe tu email" value="{{datosUsuario.email}}" [(ngModel)]="datosUsuario.email" name="emailUser" formControlName="emailUser" required></ion-input>
     </ion-item>
+
+
+    <ion-item no-lines *ngIf="( formUser.get('emailUser').hasError('minlength') || formUser.get('emailUser').hasError('pattern') ||formUser.get('emailUser').hasError('required') ) && formUser.get('emailUser').touched">
+        <div class="error" *ngIf="formUser.get('emailUser').hasError('required') && formUser.get('emailUser').touched">
+          Please input your email
+        </div>
+        <div class="error" *ngIf="formUser.get('emailUser').hasError('pattern') && formUser.get('emailUser').touched">
+          Email address invalid
+        </div>
+      </ion-item>
   </ion-col>
 </ion-row>
 
 <ion-row>
     <ion-col size="12" size-lg offset="0">  
     <ion-item>
-        <ion-label>Sexo</ion-label>
-        <ion-select placeholder="Select One" [(ngModel)]="datosUsuario.sexo" name="sexoUser"> 
+        <ion-label for="sexoUser">Sexo</ion-label>
+        <ion-select placeholder="Select One" [(ngModel)]="datosUsuario.sexo" name="sexoUser" formControlName="sexoUser" required> 
           <ion-select-option value="{{sexo.id}}" *ngFor="let sexo of sexos">{{sexo.texto}}
           </ion-select-option>
         </ion-select>
       </ion-item>
+
+      <ion-item no-lines *ngIf="(formUser.get('sexoUser').hasError('required') ) && formUser.get('sexoUser').touched">
+          <div class="error" *ngIf="formUser.get('sexoUser').hasError('required') && formUser.get('sexoUser').touched">
+            Ingrese su sexo
+          </div>
+      </ion-item>
     </ion-col>
   </ion-row>
   </ion-grid>
+    </form>
 </ion-content>
 
 <ion-footer class="container-fluid bg-4 text-center"> 
@@ -61,7 +103,7 @@
         </ion-row>
         <ion-row>
             <ion-col size="4" size-lg offset="8">
-                <ion-button (click)="navigate()">Siguiente</ion-button>
+                <ion-button (click)="navigate()" [disabled]="formUser.invalid">Siguiente</ion-button>
             </ion-col>
           </ion-row>
       </ion-grid>

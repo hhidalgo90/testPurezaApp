@@ -12,20 +12,22 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { MostrarPreguntasPage } from './mostrar-preguntas/mostrar-preguntas.page';
 import { DatosPersonalesPage } from './datos-personales/datos-personales.page';
 import { HomePage } from './home/home.page';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalPreguntasPage } from './modal-preguntas/modal-preguntas.page';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './credenciales-firebase';
+import { MapaPage } from './mapa/mapa.page';
 
 @NgModule({
-  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage],
+  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage,MapaPage],
   entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(), 
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule],
   providers: [

@@ -13,7 +13,7 @@ import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //
 export class MostrarPreguntasPage implements OnInit {
   @ViewChild(IonContent) content: IonContent; //Se usa para obtener contenido y despues hacer scroll top.
 
-  preguntas : Pregunta[];
+  public preguntas : Pregunta[]  = new Array();
   unit ="";
   public titulo = "Test Pureza";
   inicio : number;
@@ -23,13 +23,13 @@ export class MostrarPreguntasPage implements OnInit {
   mostrarBtnFinalizar : boolean;
   mostrarBtnAtras : boolean;
   public mostrarPreguntas: any = MostrarPreguntasPage;
-  public listaUsuarios;
+  public listaPreguntas : Array<Object> = new Array();
 
   constructor(private obtenerPreguntasService : ObtenerPreguntasService,private router: Router, public modalController: ModalController, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController ) { }
 
   ngOnInit() {
-    this.getPreguntas();
+    this.getColeccionPreguntas();
     this.inicio = 0;
     this.tope = 5;
     this.mostrarBtnSiguiente = true; 
@@ -37,18 +37,36 @@ export class MostrarPreguntasPage implements OnInit {
     this.mostrarBtnAtras = false;
   }
 
-  //Obtiene preguntas desde un servicio REST
+  //Obtiene preguntas desde un servicio en FIREBASE, trae un documento, no se va a utilizar pero sirve de prueba
   async getPreguntas() {
-    this.listaUsuarios = this.obtenerPreguntasService.obtenerPreguntasDesdeFirebase().valueChanges();
-    console.log(this.listaUsuarios);
-
-    this.obtenerPreguntasService.getPreguntas().subscribe(resultado=>{
-      this.preguntas = resultado;      
+    const loading = await this.loadingCtrl.create();
+    this.obtenerPreguntasService.obtenerDocumentoPreguntasDesdeFirebase().valueChanges()
+    .subscribe(respuesta=>{
+        this.listaPreguntas.push(respuesta);
+      console.log(this.listaPreguntas);
+      loading.dismiss();
     });
+
+    return await loading.present();
+  }
+  /**
+   * Metodo que obtiene listado de preguntas obtenidas de un servicio de FIREBASE.
+   */
+  async getColeccionPreguntas() {
+    const loading = await this.loadingCtrl.create();
+    this.obtenerPreguntasService.obtenerColeccionPreguntasDesdeFirebase().valueChanges()
+    .subscribe(respuesta=>{
+      console.log(respuesta);
+        this.listaPreguntas = respuesta;
+      console.log(this.listaPreguntas);
+      loading.dismiss();
+    });
+
+    return await loading.present();
   }
 
   guardarRespuestas(): void{
-    console.log("llegue a guardarRespuestas: respuestas " + this.preguntas[0].respuesta);
+    console.log("llegue a guardarRespuestas: respuestas " + this.preguntas);
 }
 
 /**

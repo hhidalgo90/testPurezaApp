@@ -3,13 +3,14 @@ import { Pregunta } from '../clases/pregunta';
 import { Observable, of } from 'rxjs';
 import { MOCKPREGUNTAS } from '../clases/mock-preguntas';
 import { Usuario } from '../clases/usuario';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ObtenerPreguntasService {
-  
+  usuarios : AngularFirestoreCollection<Usuario[]>;
+  preguntas : AngularFirestoreCollection<any[]>;
   constructor(public firestore: AngularFirestore) { }
 
 
@@ -17,8 +18,34 @@ export class ObtenerPreguntasService {
   return of (MOCKPREGUNTAS);
   }
 
-  obtenerPreguntasDesdeFirebase() : AngularFirestoreCollection<Usuario[]> {
-    return this.firestore.collection('usuarios');
+  //Funcion que obtiene documentos desde firebase
+  obtenerDocumentoPreguntasDesdeFirebase() : AngularFirestoreDocument<any> {
+    var preguntas= this.firestore.collection('usuarios').doc('preguntas');
+    
+    preguntas.get().subscribe(function(doc) {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  })
+  //console.log(this.usuarios);
+  return preguntas;
   }
+
+    //Funcion que obtiene colecciones desde firebase
+    obtenerColeccionPreguntasDesdeFirebase() : AngularFirestoreCollection<any[]> {
+      this.preguntas = this.firestore.collection('usuarios');
+
+      this.preguntas.valueChanges;
+      // .subscribe(function(data) {    
+      //   if(data)  
+      //   console.log(data);
+      //   this.preguntas = data;
+         console.log(this.preguntas.valueChanges.name);
+      // });    
+    return this.preguntas;
+    }
 
 }
