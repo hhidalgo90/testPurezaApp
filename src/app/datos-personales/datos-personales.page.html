@@ -21,16 +21,16 @@
 
     <ion-item no-lines *ngIf="( formUser.get('nombreUser').hasError('minlength') || formUser.get('nombreUser').hasError('maxlength') ||formUser.get('nombreUser').hasError('pattern') ||formUser.get('nombreUser').hasError('required') ) && formUser.get('nombreUser').touched">
         <div class="error" *ngIf="formUser.get('nombreUser').hasError('required') && formUser.get('nombreUser').touched">
-          Please input your name
+          Por favor ingrese su nombre
         </div>
         <div class="error" *ngIf="formUser.get('nombreUser').hasError('minlength') && formUser.get('nombreUser').touched">
-          Minimum 4 characters
+          Minimo 4 caracteres
         </div>
         <div class="error" *ngIf="formUser.get('nombreUser').hasError('maxlength') && formUser.get('nombreUser').touched">
-          Maximum 30 characters
+          Maximo 30 caracteres
         </div>
         <div class="error" *ngIf="formUser.get('nombreUser').hasError('pattern') && formUser.get('nombreUser').touched">
-          Just use alphabet character
+          Ingrese solo letras
         </div>
       </ion-item>
 
@@ -64,10 +64,10 @@
 
     <ion-item no-lines *ngIf="( formUser.get('emailUser').hasError('minlength') || formUser.get('emailUser').hasError('pattern') ||formUser.get('emailUser').hasError('required') ) && formUser.get('emailUser').touched">
         <div class="error" *ngIf="formUser.get('emailUser').hasError('required') && formUser.get('emailUser').touched">
-          Please input your email
+          Por favor ingrese su email
         </div>
         <div class="error" *ngIf="formUser.get('emailUser').hasError('pattern') && formUser.get('emailUser').touched">
-          Email address invalid
+          Email invalido
         </div>
       </ion-item>
   </ion-col>
@@ -77,7 +77,7 @@
     <ion-col size="12" size-lg offset="0">  
     <ion-item>
         <ion-label for="sexoUser">Sexo</ion-label>
-        <ion-select placeholder="Select One" [(ngModel)]="datosUsuario.sexo" name="sexoUser" formControlName="sexoUser" required> 
+        <ion-select placeholder="Seleccione uno" [(ngModel)]="datosUsuario.sexo" name="sexoUser" formControlName="sexoUser" required> 
           <ion-select-option value="{{sexo.id}}" *ngFor="let sexo of sexos">{{sexo.texto}}
           </ion-select-option>
         </ion-select>

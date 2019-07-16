@@ -8,15 +8,15 @@
 
 <ion-content>
   <div class="modal">
-  <ion-card class="welcome-card fondo-portada">
-    <ion-card-header>
-      <ion-card-subtitle>{{titulo}}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <p>{{texto}}</p>
-    </ion-card-content>
-  </ion-card>
+
   <ion-grid>
+    <ion-row>
+      <ion-col>
+          <p>{{titulo}}</p>
+          <br>
+          <p>{{texto}}</p>
+      </ion-col>
+    </ion-row>
       <ion-row>
           <ion-col class="columnaModal">
             <ion-button (click)="fail()">No acepto</ion-button>          
