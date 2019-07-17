@@ -17,10 +17,9 @@ import { ModalPreguntasPage } from './modal-preguntas/modal-preguntas.page';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './credenciales-firebase';
-import { MapaPage } from './mapa/mapa.page';
 
 @NgModule({
-  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage,MapaPage],
+  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage],
   entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
   imports: [
     BrowserModule,
