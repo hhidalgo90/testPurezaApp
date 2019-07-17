@@ -5,5 +5,5 @@ export class Usuario {
     edad : number;
     email : String;
     sexo : String;
-    preguntas : Pregunta[];
+    preguntas : Array<Object>;
 }

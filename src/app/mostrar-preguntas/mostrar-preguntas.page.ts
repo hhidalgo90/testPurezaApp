@@ -1,9 +1,10 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild, Input} from '@angular/core';
 import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
 import { Pregunta } from '../clases/pregunta';
-import { Router } from '@angular/router'; //Router de angular para hacer navegacion.
+import { Router, ActivatedRoute } from '@angular/router'; //Router de angular para hacer navegacion.
 import { ModalController, IonContent, LoadingController, AlertController } from '@ionic/angular'; //Libreria para utilizar modal. LoadingController, AlertController para mostrar un 'cargando' y mostrar alert en caso de error
 import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //Pagina utilizada como modal.
+import { Usuario } from '../clases/usuario';
 
 @Component({
   selector: 'app-mostrar-preguntas',
@@ -24,9 +25,11 @@ export class MostrarPreguntasPage implements OnInit {
   mostrarBtnAtras : boolean;
   public mostrarPreguntas: any = MostrarPreguntasPage;
   public listaPreguntas : Array<Object> = new Array();
+  public usuario = new Usuario;
 
   constructor(private obtenerPreguntasService : ObtenerPreguntasService,private router: Router, public modalController: ModalController, public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController ) { }
+    public alertCtrl: AlertController , public route: ActivatedRoute) { 
+    }
 
   ngOnInit() {
     this.getColeccionPreguntas();
@@ -35,6 +38,11 @@ export class MostrarPreguntasPage implements OnInit {
     this.mostrarBtnSiguiente = true; 
     this.mostrarBtnFinalizar = false;
     this.mostrarBtnAtras = false;
+    this.usuario.nombre = this.route.snapshot.paramMap.get('nombre');
+    this.usuario.edad = +this.route.snapshot.paramMap.get('edad'); //signo + convierte string a number
+    this.usuario.email = this.route.snapshot.paramMap.get('email');
+    this.usuario.sexo = this.route.snapshot.paramMap.get('sexo');
+    console.log("datos usuario" + this.usuario);
   }
 
   //Obtiene preguntas desde un servicio en FIREBASE, trae un documento, no se va a utilizar pero sirve de prueba
@@ -49,6 +57,7 @@ export class MostrarPreguntasPage implements OnInit {
 
     return await loading.present();
   }
+  
   /**
    * Metodo que obtiene listado de preguntas obtenidas de un servicio de FIREBASE.
    */
@@ -58,6 +67,7 @@ export class MostrarPreguntasPage implements OnInit {
     .subscribe(respuesta=>{
       console.log(respuesta);
         this.listaPreguntas = respuesta;
+        this.ordenarPreguntas(this.listaPreguntas);
       console.log(this.listaPreguntas);
       loading.dismiss();
     });
@@ -66,14 +76,19 @@ export class MostrarPreguntasPage implements OnInit {
   }
 
   guardarRespuestas(): void{
-    console.log("llegue a guardarRespuestas: respuestas " + this.preguntas);
+    console.log("llegue a guardarRespuestas: respuestas ");
+    this.usuario.preguntas = this.listaPreguntas;
+    console.log("respuestas usuario " + this.usuario);
+    this.listaPreguntas.forEach(function (element){
+      console.log(element);
+    });
 }
 
 /**
  * Metodo para avanzar en el listado de preguntas.
  */
 siguientePregunta(){
-  this.numeroPreguntas = this.preguntas.length;
+  this.numeroPreguntas = this.listaPreguntas.length;
   this.inicio+=5;
   this.tope+=5;
   if(this.tope < this.numeroPreguntas){
@@ -93,7 +108,7 @@ siguientePregunta(){
  * Metodo para volver atras en el listado de preguntas.
  */
 preguntaAnterior(){
-  this.numeroPreguntas = this.preguntas.length;
+  this.numeroPreguntas = this.listaPreguntas.length;
   this.inicio-=5;
   this.tope-=5;
   if( this.inicio > 0){
@@ -130,7 +145,7 @@ async presentModal() {
     component: ModalPreguntasPage,
     componentProps: { 
       'titulo': "Esta seguro que desea terminar con el test?",
-      'texto' : "Si seleccionas Si no podras modificar tus respuestas." }
+      'texto' : "Si aceptas no podras modificar tus respuestas." }
   });
    modal.present();
    const { data } = await modal.onDidDismiss();
@@ -143,4 +158,23 @@ async presentModal() {
     this.router.navigate(['/mostrarPreguntas']);
    }
 }
+
+/**
+ * Metodo que ordena el arreglo de preguntas por el id de la pregunta en orden ascendente.
+ * @param listaPreguntas 
+ */
+ordenarPreguntas(listaPreguntas: Object[]): any {
+  if(!listaPreguntas || listaPreguntas === undefined || listaPreguntas.length === 0) return null;
+
+  listaPreguntas.sort((a: any, b: any) => {
+    if (a.idPregunta < b.idPregunta) {
+      return -1;
+    } else if (a.idPregunta > b.idPregunta) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return listaPreguntas;
+};
 }

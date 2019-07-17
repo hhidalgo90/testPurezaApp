@@ -47,7 +47,7 @@ sexos: any[] = [
   navigate(){
     console.log(this.datosUsuario);
     //this.validarFormulario();
-    this.router.navigate(['/mostrarPreguntas']);
+    this.router.navigate(['/mostrarPreguntas' , this.datosUsuario]);
   }
 
   validarFormulario(){

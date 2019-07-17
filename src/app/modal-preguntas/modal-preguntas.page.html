@@ -9,22 +9,22 @@
 <ion-content>
   <div class="modal">
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-          <p>{{titulo}}</p>
-          <br>
-          <p>{{texto}}</p>
-      </ion-col>
-    </ion-row>
+    <ion-grid>
       <ion-row>
-          <ion-col class="columnaModal">
-            <ion-button (click)="fail()">No acepto</ion-button>          
-          </ion-col>
-          <ion-col class="columnaModal">
-            <ion-button (click)="ok()">Acepto</ion-button>
-          </ion-col>
-        </ion-row>
+        <ion-col>
+          <h2><p>{{titulo}}</p></h2>
+          <br>
+          <h4><p>{{texto}}</p></h4>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="columnaModal">
+          <ion-button (click)="fail()">No acepto</ion-button>
+        </ion-col>
+        <ion-col class="columnaModal">
+          <ion-button (click)="ok()">Acepto</ion-button>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 </ion-content>
