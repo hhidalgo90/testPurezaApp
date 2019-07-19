@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>
+        <ion-img src="/assets/icon/logo.png" class="toolbar-background"></ion-img>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <div><h2>Estimado(a) {{usuario.nombre}} tus respuestas son las siguientes: </h2></div>
+  <ion-list *ngFor="let pregunta of usuario.preguntas">
+      <ion-radio-group name="respuesta">
+      <ion-list-header>
+        {{pregunta.idPregunta}} ) {{pregunta.glosa}}
+      </ion-list-header>
+
+        <ion-label>{{pregunta.respuesta}}</ion-label>
+
+      </ion-radio-group>
+  </ion-list>
+</ion-content>

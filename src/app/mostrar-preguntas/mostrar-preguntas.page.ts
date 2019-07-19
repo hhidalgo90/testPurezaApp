@@ -1,7 +1,7 @@
-import { Component, OnInit ,ViewChild, Input} from '@angular/core';
+import { Component, OnInit ,ViewChild, Injectable} from '@angular/core';
 import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
 import { Pregunta } from '../clases/pregunta';
-import { Router, ActivatedRoute } from '@angular/router'; //Router de angular para hacer navegacion.
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'; //Router de angular para hacer navegacion.
 import { ModalController, IonContent, LoadingController, AlertController } from '@ionic/angular'; //Libreria para utilizar modal. LoadingController, AlertController para mostrar un 'cargando' y mostrar alert en caso de error
 import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //Pagina utilizada como modal.
 import { Usuario } from '../clases/usuario';
@@ -11,6 +11,7 @@ import { Usuario } from '../clases/usuario';
   templateUrl: './mostrar-preguntas.page.html',
   styleUrls: ['./mostrar-preguntas.page.scss'],
 })
+@Injectable() 
 export class MostrarPreguntasPage implements OnInit {
   @ViewChild(IonContent) content: IonContent; //Se usa para obtener contenido y despues hacer scroll top.
 
@@ -78,7 +79,8 @@ export class MostrarPreguntasPage implements OnInit {
   guardarRespuestas(): void{
     console.log("llegue a guardarRespuestas: respuestas ");
     this.usuario.preguntas = this.listaPreguntas;
-    console.log("respuestas usuario " + this.usuario);
+    console.log("respuestas usuario ");
+    console.log(this.usuario);
     this.listaPreguntas.forEach(function (element){
       console.log(element);
     });
@@ -145,14 +147,22 @@ async presentModal() {
     component: ModalPreguntasPage,
     componentProps: { 
       'titulo': "Esta seguro que desea terminar con el test?",
-      'texto' : "Si aceptas no podras modificar tus respuestas." }
+      'texto' : "Si aceptas no podras modificar tus respuestas."},
+      cssClass: "modalClass"
   });
    modal.present();
    const { data } = await modal.onDidDismiss();
    console.log(data);
    if(data.result == true){
     this.guardarRespuestas();
-    this.router.navigate(['/home']);
+
+    let navigationExtras: NavigationExtras = {
+      state: {
+        user: this.usuario
+      }
+    };
+    
+    this.router.navigate(['/mostrarRespuestas'], navigationExtras);
    }
    else{
     this.router.navigate(['/mostrarPreguntas']);
@@ -177,4 +187,10 @@ ordenarPreguntas(listaPreguntas: Object[]): any {
   });
   return listaPreguntas;
 };
+
+set data(value: Usuario) { 
+  console.log("llegue SET");
+  
+  this.usuario = value; 
+} 
 }

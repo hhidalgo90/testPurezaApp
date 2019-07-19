@@ -17,9 +17,10 @@ import { ModalPreguntasPage } from './modal-preguntas/modal-preguntas.page';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './credenciales-firebase';
+import { MostrarRespuestasPage } from './mostrar-respuestas/mostrar-respuestas.page';
 
 @NgModule({
-  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage],
+  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage,MostrarRespuestasPage],
   entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
   imports: [
     BrowserModule,
@@ -33,7 +34,8 @@ import { firebaseConfig } from './credenciales-firebase';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera
+    Camera,
+    MostrarPreguntasPage
   ],
   bootstrap: [AppComponent]
 })
