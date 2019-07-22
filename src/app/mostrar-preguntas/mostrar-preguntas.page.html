@@ -5,24 +5,24 @@
 </ion-header>
 
 <ion-content>
-
+  <div padding>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content>
-  <ion-list *ngFor="let pregunta of listaPreguntas | slice: inicio:tope">
-      <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
-      <ion-list-header>
-        {{pregunta.idPregunta}} ) {{pregunta.glosa}}
-      </ion-list-header>
-  
-      <ion-item *ngFor="let opcion of pregunta.opciones">
-        <ion-label>{{opcion}}</ion-label>
-        <ion-radio value="{{opcion}}" name="{{pregunta.id}}"></ion-radio>
-      </ion-item>
-      </ion-radio-group>
-  </ion-list>
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+      <ion-infinite-scroll-content>
+        <ion-list *ngFor="let pregunta of listaPreguntas | slice: inicio:tope">
+          <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
+            <ion-list-header>
+              {{pregunta.idPregunta}} ) {{pregunta.glosa}}
+            </ion-list-header>
 
+            <ion-item *ngFor="let opcion of pregunta.opciones">
+              <ion-label>{{opcion}}</ion-label>
+              <ion-radio value="{{opcion}}" name="{{pregunta.id}}"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
 </ion-content>
 
 

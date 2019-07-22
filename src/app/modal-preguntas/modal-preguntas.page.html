@@ -1,21 +1,19 @@
-
 <ion-content>
   <div>
-
     <ion-grid>
+      <ion-col text-center>
+        <div float-end>
+          <ion-icon name="close" (click)="fail()"></ion-icon>
+        </div>
+        <ion-img src="/assets/icon/warning.jpg" class="imagenModal"></ion-img>
+        <h4 justify-content-center>
+          <p>{{texto}}</p>
+        </h4>
+      </ion-col>
+
       <ion-row>
-        <ion-col>
-          <h2><p>{{titulo}}</p></h2>
-          <br>
-          <h4><p>{{texto}}</p></h4>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="columnaModal">
-          <ion-button (click)="fail()">No acepto</ion-button>
-        </ion-col>
-        <ion-col class="columnaModal">
-          <ion-button (click)="ok()">Acepto</ion-button>
+        <ion-col text-center>
+          <ion-button (click)="ok()" color="success">Acepto</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
