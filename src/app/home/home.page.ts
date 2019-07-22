@@ -47,7 +47,8 @@ export class HomePage {
         component: ModalPreguntasPage,
         componentProps: { 'titulo': "Lea antes de empezar",
       'texto' : "Tendras que completar una breve encuesta, una vez terminada recibiras un diagnotivo de tu estado de pureza realizado por expertos." },
-      cssClass: "modalClass"
+      cssClass: "modalClass",
+      backdropDismiss : false
       });
        modal.present();
        const { data } = await modal.onDidDismiss();

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'; //Ro
 import { ModalController, IonContent, LoadingController, AlertController } from '@ionic/angular'; //Libreria para utilizar modal. LoadingController, AlertController para mostrar un 'cargando' y mostrar alert en caso de error
 import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //Pagina utilizada como modal.
 import { Usuario } from '../clases/usuario';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-mostrar-preguntas',
@@ -27,6 +28,7 @@ export class MostrarPreguntasPage implements OnInit {
   public mostrarPreguntas: any = MostrarPreguntasPage;
   public listaPreguntas : Array<Object> = new Array();
   public usuario = new Usuario;
+  formPreguntas : FormGroup;
 
   constructor(private obtenerPreguntasService : ObtenerPreguntasService,private router: Router, public modalController: ModalController, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController , public route: ActivatedRoute) { 
@@ -44,6 +46,11 @@ export class MostrarPreguntasPage implements OnInit {
     this.usuario.email = this.route.snapshot.paramMap.get('email');
     this.usuario.sexo = this.route.snapshot.paramMap.get('sexo');
     console.log("datos usuario" + this.usuario);
+
+    //Inicializar formulario
+    this.formPreguntas = new FormGroup({
+      respuesta: new FormControl('', [Validators.required])      
+    });
   }
 
   //Obtiene preguntas desde un servicio en FIREBASE, trae un documento, no se va a utilizar pero sirve de prueba
@@ -148,7 +155,8 @@ async presentModal() {
     componentProps: { 
       'titulo': "Esta seguro que desea terminar con el test?",
       'texto' : "Si aceptas no podras modificar tus respuestas."},
-      cssClass: "modalClass"
+      cssClass: "modalClass",
+      backdropDismiss : false
   });
    modal.present();
    const { data } = await modal.onDidDismiss();
@@ -165,7 +173,7 @@ async presentModal() {
     this.router.navigate(['/mostrarRespuestas'], navigationExtras);
    }
    else{
-    this.router.navigate(['/mostrarPreguntas']);
+    modal.dismiss();
    }
 }
 
@@ -187,10 +195,4 @@ ordenarPreguntas(listaPreguntas: Object[]): any {
   });
   return listaPreguntas;
 };
-
-set data(value: Usuario) { 
-  console.log("llegue SET");
-  
-  this.usuario = value; 
-} 
 }
