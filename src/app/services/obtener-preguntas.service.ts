@@ -5,6 +5,7 @@ import { MOCKPREGUNTAS } from '../clases/mock-preguntas';
 import { Usuario } from '../clases/usuario';
 import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument } from 'angularfire2/firestore';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +47,15 @@ export class ObtenerPreguntasService {
          console.log(this.preguntas.valueChanges.name);
       // });    
     return this.preguntas;
+    }
+
+    guardarRespuestasUsuario(usuario : Usuario){
+      this.firestore.collection('respuestasUsuarios').doc(usuario.nombre).collection('respuestas').add({
+        nombreUser : usuario.nombre,
+        edadUser : usuario.edad,
+        emailUser : usuario.email,
+        respuestas : usuario.preguntas
+      });
     }
 
 }

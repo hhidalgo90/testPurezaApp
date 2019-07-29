@@ -1,7 +1,7 @@
 import { Pregunta } from './pregunta';
 
 export class Usuario {
-    nombre : String;
+    nombre : string;
     edad : number;
     email : String;
     sexo : String;

@@ -90,7 +90,8 @@ export class MostrarPreguntasPage implements OnInit {
     console.log(this.usuario);
     this.listaPreguntas.forEach(function (element){
       console.log(element);
-    });
+    })
+    this.obtenerPreguntasService.guardarRespuestasUsuario(this.usuario);
 }
 
 /**
