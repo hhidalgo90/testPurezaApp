@@ -65,4 +65,13 @@ export class ObtenerPreguntasService {
       });
     }
 
+    guardarRespuestasUsuario(usuario : Usuario){
+      this.firestore.collection('respuestasUsuarios').doc(usuario.nombre).collection('respuestas').add({
+        nombreUser : usuario.nombre,
+        edadUser : usuario.edad,
+        emailUser : usuario.email,
+        respuestas : usuario.preguntas
+      });
+    }
+
 }
