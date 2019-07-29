@@ -14,9 +14,8 @@
     <ion-grid>
   <ion-row>
     <ion-col size="12" size-lg offset="0">      
-    <ion-item>        
-        <ion-label for="nombreUser">Nombre</ion-label>
-        <ion-input type="text" placeholder="Nombre o nickname" color="secondary" background-color="secondary" value="{{datosUsuario.nombre}}" [(ngModel)]="datosUsuario.nombre"  name="nombreUser" formControlName="nombreUser" required></ion-input>
+    <ion-item>
+        <ion-input expand="block" type="text" placeholder="Nombre o nickname" color="secondary" background-color="secondary" value="{{datosUsuario.nombre}}" [(ngModel)]="datosUsuario.nombre"  name="nombreUser" formControlName="nombreUser" required></ion-input>
     </ion-item>
 
     <ion-item no-lines *ngIf="( formUser.get('nombreUser').hasError('minlength') || formUser.get('nombreUser').hasError('maxlength') ||formUser.get('nombreUser').hasError('pattern') ||formUser.get('nombreUser').hasError('required') ) && formUser.get('nombreUser').touched">
@@ -33,17 +32,13 @@
           Ingrese solo letras
         </div>
       </ion-item>
-
-
-
   </ion-col>
 </ion-row>
 
 <ion-row>
     <ion-col size="12" size-lg offset="0">  
     <ion-item>
-        <ion-label for="edadUser">Edad</ion-label>
-        <ion-input type="number" placeholder="Cuentanos tu edad"value="{{datosUsuario.edad}}" [(ngModel)]="datosUsuario.edad" name="edadUser" formControlName="edadUser" required></ion-input>
+        <ion-input expand="block" type="number" placeholder="Cuentanos tu edad"value="{{datosUsuario.edad}}" [(ngModel)]="datosUsuario.edad" name="edadUser" formControlName="edadUser" required></ion-input>
     </ion-item>
 
     <ion-item no-lines *ngIf="(formUser.get('edadUser').hasError('required') ) && formUser.get('edadUser').touched">
@@ -57,8 +52,7 @@
 <ion-row>
     <ion-col size="12" size-lg offset="0">  
     <ion-item>
-        <ion-label for="emailUser">Email</ion-label>
-        <ion-input type="email" placeholder="Escribe tu email" value="{{datosUsuario.email}}" [(ngModel)]="datosUsuario.email" name="emailUser" formControlName="emailUser" required></ion-input>
+        <ion-input expand="block" type="email" placeholder="Escribe tu email" value="{{datosUsuario.email}}" [(ngModel)]="datosUsuario.email" name="emailUser" formControlName="emailUser" required></ion-input>
     </ion-item>
 
 
@@ -102,10 +96,10 @@
           </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col size="4" size-lg offset="8">
+            <ion-col text-center>
                 <ion-button (click)="navigate()" [disabled]="formUser.invalid">Siguiente</ion-button>
             </ion-col>
-          </ion-row>
+        </ion-row>
       </ion-grid>
     </ion-footer>
 

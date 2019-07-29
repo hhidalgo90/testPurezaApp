@@ -39,7 +39,7 @@
         <ion-col align-self-start>
           <ion-button *ngIf="mostrarBtnAtras" size="4" size-lg offset="3" (click)="preguntaAnterior()">Anterior</ion-button>          
         </ion-col>
-        <ion-col size="4" size-lg offset="3">
+        <ion-col text-right>
             <ion-button *ngIf="mostrarBtnSiguiente" (click)="siguientePregunta()">Siguiente</ion-button>
 
             <ion-button color="success" *ngIf="mostrarBtnFinalizar" [disabled]="formPreguntas.invalid" (click)="presentModal()">Finalizar</ion-button>
