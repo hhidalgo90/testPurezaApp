@@ -25,7 +25,6 @@ export class MostrarPreguntasPage implements OnInit {
   mostrarBtnSiguiente : boolean;
   mostrarBtnFinalizar : boolean;
   mostrarBtnAtras : boolean;
-  public mostrarPreguntas: any = MostrarPreguntasPage;
   public listaPreguntas : Array<Object> = new Array();
   public usuario = new Usuario;
   formPreguntas : FormGroup;
@@ -55,7 +54,10 @@ export class MostrarPreguntasPage implements OnInit {
 
   //Obtiene preguntas desde un servicio en FIREBASE, trae un documento, no se va a utilizar pero sirve de prueba
   async getPreguntas() {
-    const loading = await this.loadingCtrl.create();
+    const loading = await this.loadingCtrl.create({      
+      duration: 1000,
+      message: "Obteniendo preguntas"
+    });
     this.obtenerPreguntasService.obtenerDocumentoPreguntasDesdeFirebase().valueChanges()
     .subscribe(respuesta=>{
         this.listaPreguntas.push(respuesta);
@@ -88,8 +90,8 @@ export class MostrarPreguntasPage implements OnInit {
     this.usuario.preguntas = this.listaPreguntas;
     console.log("respuestas usuario ");
     console.log(this.usuario);
-    this.listaPreguntas.forEach(function (element){
-      console.log(element);
+    this.listaPreguntas.forEach(function (element:any){
+      console.log(element.glosa);
     })
     this.obtenerPreguntasService.guardarRespuestasUsuario(this.usuario);
 }
@@ -171,7 +173,7 @@ async presentModal() {
       }
     };
     
-    this.router.navigate(['/mostrarRespuestas'], navigationExtras);
+    this.router.navigate(['/mostrarResultado'], navigationExtras);
    }
    else{
     modal.dismiss();

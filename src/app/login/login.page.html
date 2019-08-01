@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>
+        <ion-img src="/assets/icon/logo.png" class="toolbar-background"></ion-img>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <div padding>
+      <ion-card>
+          <ion-img src="/assets/icon/warning.jpg" class="circle-pic"></ion-img>
+          <ion-card-header>
+           <h1 justify-content-center> UPS.</h1>
+          </ion-card-header>
+          <ion-card-content>
+            <h3>Solo personal autorizado puede acceder a ver este contenido.</h3>     
+          </ion-card-content>
+        </ion-card>
+        <form novalidate [formGroup]="formLogin">
+        <ion-grid>       
+        <ion-row>
+            <ion-col size="12" size-lg offset="0">  
+            <ion-item>
+                <ion-input expand="block" type="email" placeholder="Ingresa tu email" value="{{datosUsuario.email}}" [(ngModel)]="datosUsuario.email" name="emailUser" formControlName="emailUser" required></ion-input>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" size-lg offset="0">  
+            <ion-item>
+                <ion-input expand="block" type="password" placeholder="Ingresa tu contraseña" value="{{datosUsuario.email}}" [(ngModel)]="datosUsuario.email" name="passUser" formControlName="passUser" required></ion-input>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col text-right>  
+                <ion-button (click)="navigate()" [disabled]="formLogin.invalid">Ingresar</ion-button>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+        </form>
+  </div>
+
+</ion-content>
