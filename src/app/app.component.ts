@@ -22,8 +22,8 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Mapa',
-      url: '/mapa',
+      title: 'Ver resultados',
+      url: '/login',
       icon: 'list'
     }
     

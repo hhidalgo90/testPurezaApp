@@ -4,6 +4,8 @@ import { HomePage } from './home/home.page';
 import { MostrarPreguntasPage } from './mostrar-preguntas/mostrar-preguntas.page';
 import { DatosPersonalesPage } from './datos-personales/datos-personales.page';
 import { MostrarRespuestasPage } from './mostrar-respuestas/mostrar-respuestas.page';
+import { MostrarResultadoPage } from './mostrar-resultado/mostrar-resultado.page';
+import { LoginPage } from './login/login.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,6 +15,10 @@ const routes: Routes = [
   { path: 'datosPersonales', component: DatosPersonalesPage },
   { path: 'modal-preguntas', loadChildren: './modal-preguntas/modal-preguntas.module#ModalPreguntasPageModule' },
   { path: 'mostrarRespuestas', component: MostrarRespuestasPage },
+  { path: 'mostrarResultado', component: MostrarResultadoPage },
+  { path: 'login', component: LoginPage },
+
+
 
 
 

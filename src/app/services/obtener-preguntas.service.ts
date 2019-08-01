@@ -54,7 +54,7 @@ export class ObtenerPreguntasService {
     }
     /**
      * Funcion que guarda las respuestas del usuario en firebase.
-     * @param usuario 
+     * @param usuario objeto con datos del usuario.
      */
     guardarRespuestasUsuario(usuario : Usuario){
       this.firestore.collection('respuestasUsuarios').doc(usuario.nombre).collection('respuestas').add({
@@ -62,6 +62,8 @@ export class ObtenerPreguntasService {
         edadUser : usuario.edad,
         emailUser : usuario.email,
         respuestas : usuario.preguntas
+      }).catch(error=>{
+        console.error("Ocurrio un error al guardar las respuestas :" + error);
       });
     }
   }

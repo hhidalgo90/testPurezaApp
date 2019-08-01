@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-img src="/assets/icon/logo.png" class="toolbar-background"></ion-img>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div padding text-center>
+  <ion-card>
+    <ion-card-header>
+     <h1 justify-content-center> Estimad@ {{nombreUsuario}} tu porcentaje de pureza es de {{porcentajePureza}} %.</h1>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #doughnutCanvas></canvas>      
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+       <h3 justify-content-center>{{descripcion}}</h3>
+    </ion-card-content>
+  </ion-card>
+
+</div>
+</ion-content>
+
+<ion-footer class="container-fluid bg-4 text-center"> 
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
+                <ion-button color="success" routerLink="/home" >Ir al Home</ion-button>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+    </ion-footer>

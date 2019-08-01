@@ -18,9 +18,11 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './credenciales-firebase';
 import { MostrarRespuestasPage } from './mostrar-respuestas/mostrar-respuestas.page';
+import { MostrarResultadoPage } from './mostrar-resultado/mostrar-resultado.page';
+import { LoginPage } from './login/login.page';
 
 @NgModule({
-  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage,MostrarRespuestasPage],
+  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage,MostrarRespuestasPage,MostrarResultadoPage,LoginPage],
   entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
   imports: [
     BrowserModule,

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../clases/usuario';
 import { Router, ActivatedRoute } from '@angular/router'; //Router de angular para hacer navegacion.
-import { MostrarPreguntasPage } from '../mostrar-preguntas/mostrar-preguntas.page';
 
 @Component({
   selector: 'app-mostrar-respuestas',
@@ -10,7 +9,7 @@ import { MostrarPreguntasPage } from '../mostrar-preguntas/mostrar-preguntas.pag
 })
 export class MostrarRespuestasPage implements OnInit {
   public usuario = new Usuario;
-  constructor(public router: Router, public route: ActivatedRoute, public mostrarPreguntas : MostrarPreguntasPage) { 
+  constructor(public router: Router, public route: ActivatedRoute) { 
     console.log("constructor");
     
     this.route.queryParams.subscribe(params => {
@@ -22,11 +21,5 @@ export class MostrarRespuestasPage implements OnInit {
   }
 
   ngOnInit() {
-
-
-    
   }
-  get data():Usuario { 
-    return this.mostrarPreguntas.usuario; 
-  } 
 }
