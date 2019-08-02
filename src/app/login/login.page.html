@@ -11,10 +11,10 @@
 
 <ion-content>
   <div padding>
-      <ion-card>
+      <ion-card text-center class="borde">
           <ion-img src="/assets/icon/warning.jpg" class="circle-pic"></ion-img>
-          <ion-card-header>
-           <h1 justify-content-center> UPS.</h1>
+          <ion-card-header justify-content-center>
+           <h1> UPS.</h1>
           </ion-card-header>
           <ion-card-content>
             <h3>Solo personal autorizado puede acceder a ver este contenido.</h3>     
@@ -22,25 +22,37 @@
         </ion-card>
         <form novalidate [formGroup]="formLogin">
         <ion-grid>       
-        <ion-row>
-            <ion-col size="12" size-lg offset="0">  
-            <ion-item>
-                <ion-input expand="block" type="email" placeholder="Ingresa tu email" value="{{datosUsuario.email}}" [(ngModel)]="datosUsuario.email" name="emailUser" formControlName="emailUser" required></ion-input>
+        <ion-row class="ion-justify-content-around">
+            <ion-col>  
+            <ion-item class="borde">
+                <ion-input expand="block" type="email" placeholder="Ingresa tu email" value="{{emailUser}}" [(ngModel)]="emailUser" name="emailUser" formControlName="emailUser" required></ion-input>
+            </ion-item>
+            <ion-item no-lines *ngIf="( formLogin.get('emailUser').hasError('minlength') || formLogin.get('emailUser').hasError('pattern') ||formLogin.get('emailUser').hasError('required') ) && formLogin.get('emailUser').touched">
+              <div class="error" *ngIf="formLogin.get('emailUser').hasError('required') && formLogin.get('emailUser').touched">
+                Por favor ingrese su email
+              </div>
+              <div class="error" *ngIf="formLogin.get('emailUser').hasError('pattern') && formLogin.get('emailUser').touched">
+                Email invalido
+              </div>
             </ion-item>
 
           </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col size="12" size-lg offset="0">  
-            <ion-item>
-                <ion-input expand="block" type="password" placeholder="Ingresa tu contraseña" value="{{datosUsuario.email}}" [(ngModel)]="datosUsuario.email" name="passUser" formControlName="passUser" required></ion-input>
+            <ion-col >  
+            <ion-item class="borde">
+                <ion-input expand="block" type="password" placeholder="Ingresa tu contraseña" value="{{passUser}}" [(ngModel)]="passUser" name="passUser" formControlName="passUser" required></ion-input>
             </ion-item>
-
+            <ion-item no-lines *ngIf="(formLogin.get('passUser').hasError('required') ) && formLogin.get('passUser').touched">
+              <div class="error" *ngIf="formLogin.get('passUser').hasError('required') && formLogin.get('passUser').touched">
+                Campo obligatorio
+              </div>
+            </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
             <ion-col text-right>  
-                <ion-button (click)="navigate()" [disabled]="formLogin.invalid">Ingresar</ion-button>
+                <ion-button expand="block" (click)="navigate()" [disabled]="formLogin.invalid">Ingresar</ion-button>
           </ion-col>
         </ion-row>
         </ion-grid>
