@@ -93,9 +93,6 @@ export class MostrarPreguntasPage implements OnInit {
     this.usuario.preguntas = this.listaPreguntas;
     console.log("respuestas usuario ");
     console.log(this.usuario);
-    this.listaPreguntas.forEach(function (element:any){
-      console.log(element.glosa);
-    })
     this.obtenerPreguntasService.guardarRespuestasUsuario(this.usuario);
 }
 
@@ -167,6 +164,7 @@ async presentModal() {
    modal.present();
    const { data } = await modal.onDidDismiss();
    console.log(data);
+    if(this.validarRespuestas()){
    if(data.result == true){
     this.guardarRespuestas();
 
@@ -181,7 +179,23 @@ async presentModal() {
    else{
     modal.dismiss();
    }
+  }
 }
+  validarRespuestas() {
+    let respuestasVacias = 0;
+    this.listaPreguntas.forEach(function (element:any){
+     console.log(element.glosa);
+     if(element.respuesta=="A"){
+       respuestasVacias++;
+     }
+   })
+   if(respuestasVacias>0){
+     alert("Debe contestar todas las preguntas!!");
+     return false;
+   }else{
+     return true;
+   }
+  }
 
 /**
  * Metodo que ordena el arreglo de preguntas por el id de la pregunta en orden ascendente.
