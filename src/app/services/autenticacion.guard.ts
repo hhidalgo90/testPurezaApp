@@ -23,7 +23,7 @@ export class AutenticacionGuard implements  CanActivate{
           resolve(true);
         } else {
           console.log('User is not logged in');
-          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
           resolve(false);
         }
       });

@@ -20,11 +20,16 @@ import { firebaseConfig } from './credenciales-firebase';
 import { MostrarRespuestasPage } from './mostrar-respuestas/mostrar-respuestas.page';
 import { MostrarResultadoPage } from './mostrar-resultado/mostrar-resultado.page';
 import { LoginPage } from './login/login.page';
-import { AutenticacionGuard } from './services/autenticacion.guard';
-import { AutenticacionService } from './services/autenticacion.service'
 
 @NgModule({
-  declarations: [AppComponent,MostrarPreguntasPage,HomePage,DatosPersonalesPage,ModalPreguntasPage,MostrarRespuestasPage,MostrarResultadoPage,LoginPage, AutenticacionGuard, AutenticacionService],
+  declarations: [AppComponent,
+    MostrarPreguntasPage,
+    HomePage,
+    DatosPersonalesPage,
+    ModalPreguntasPage,
+    MostrarRespuestasPage,
+    MostrarResultadoPage,
+    LoginPage    ],
   entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
   imports: [
     BrowserModule,

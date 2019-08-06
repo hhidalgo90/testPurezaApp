@@ -1,6 +1,6 @@
 <ion-app>  
   <ion-split-pane>
-    <ion-menu>
+    <ion-menu (ionWillOpen)="esLogueado()">
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
@@ -9,13 +9,21 @@
       <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" >
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{p.title}}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle *ngIf="esLogueado()" auto-hide="false">
+          <ion-item  [routerDirection]="'root'" item-left style="color: red" (click)="cerrarSesion()">
+            <ion-icon name="md-exit" slot="start"></ion-icon>
+            <ion-label >
+              Cerrar sesión
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>

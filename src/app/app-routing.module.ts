@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'mostrarPreguntas/:usuario', component: MostrarPreguntasPage },
   { path: 'datosPersonales', component: DatosPersonalesPage },
   { path: 'modal-preguntas', loadChildren: './modal-preguntas/modal-preguntas.module#ModalPreguntasPageModule' },
-  { path: 'mostrarRespuestas', component: MostrarRespuestasPage, canActivate: [AutenticacionGuard] },
+  { path: 'mostrarRespuestas', component: MostrarRespuestasPage, canActivate: [AutenticacionGuard] },//solo para usuarios logueados
   { path: 'mostrarResultado', component: MostrarResultadoPage },
   { path: 'login', component: LoginPage },
 
