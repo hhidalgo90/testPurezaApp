@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>
+      <ion-img src="/assets/icon/logo.png" class="toolbar-background"></ion-img>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div padding> 
+  <ion-item *ngFor="let item of listaUsuarios">
+    <ion-avatar slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+    <ion-label (click)="mostrarRespuestas(item.nombreUser)">{{item.nombreUser}}</ion-label>
+  </ion-item>
+</div>
+</ion-content>

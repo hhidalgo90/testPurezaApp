@@ -6,11 +6,10 @@
 
 <ion-content>
   <div padding>
-      <form novalidate [formGroup]="formPreguntas">
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content>
         <ion-list *ngFor="let pregunta of listaPreguntas | slice: inicio:tope">
-          <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta" formControlName="respuesta" required>
+          <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
             <ion-list-header>
               {{pregunta.idPregunta}} ) {{pregunta.glosa}}
             </ion-list-header>
@@ -23,7 +22,6 @@
         </ion-list>
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
-    </form>
   </div>
 </ion-content>
 
@@ -42,7 +40,7 @@
         <ion-col text-right>
             <ion-button *ngIf="mostrarBtnSiguiente" (click)="siguientePregunta()">Siguiente</ion-button>
 
-            <ion-button color="success" *ngIf="mostrarBtnFinalizar" [disabled]="formPreguntas.invalid" (click)="presentModal()">Finalizar</ion-button>
+            <ion-button color="success" *ngIf="mostrarBtnFinalizar" (click)="presentModal()">Finalizar</ion-button>
         </ion-col>
       </ion-row>
   </ion-grid>

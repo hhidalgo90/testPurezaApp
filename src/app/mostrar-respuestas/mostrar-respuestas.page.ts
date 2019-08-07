@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router'; //Router de angular pa
   styleUrls: ['./mostrar-respuestas.page.scss'],
 })
 export class MostrarRespuestasPage implements OnInit {
-  public usuario = new Usuario;
+  public usuario = new Array;
   constructor(public router: Router, public route: ActivatedRoute) { 
     console.log("constructor");
     

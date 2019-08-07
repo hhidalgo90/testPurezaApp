@@ -28,7 +28,7 @@ export class AppComponent {
     },
     {
       title: 'Ver resultados',
-      url: '/login',
+      url:  !this.esLogueado() ? '/login': '/mostrarUsuarios',
       icon: 'list'
     }
     

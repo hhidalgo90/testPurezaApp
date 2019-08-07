@@ -10,7 +10,7 @@ import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument }
   providedIn: 'root'
 })
 export class ObtenerPreguntasService {
-  usuarios : AngularFirestoreCollection<Usuario[]>;
+  usuarios : AngularFirestoreCollection<any[]>;
   preguntas : AngularFirestoreCollection<any[]>;
   constructor(public firestore: AngularFirestore) { }
 
@@ -57,7 +57,7 @@ export class ObtenerPreguntasService {
      * @param usuario objeto con datos del usuario.
      */
     guardarRespuestasUsuario(usuario : Usuario){
-      this.firestore.collection('respuestasUsuarios').doc(usuario.nombre).collection('respuestas').add({
+      this.firestore.collection('respuestasUsuarios').add({
         nombreUser : usuario.nombre,
         edadUser : usuario.edad,
         emailUser : usuario.email,
@@ -65,5 +65,16 @@ export class ObtenerPreguntasService {
       }).catch(error=>{
         console.error("Ocurrio un error al guardar las respuestas :" + error);
       });
+    }
+
+    /**
+     * Funcion que obtiene colecciones de usuarios que ya respondieron encuesta desde firebase.
+     */
+    obtenerColeccionUsuariosDesdeFirebase() : AngularFirestoreCollection<any[]> {
+      this.usuarios = this.firestore.collection('respuestasUsuarios');
+
+      this.usuarios.valueChanges;
+         console.log(this.usuarios.valueChanges.name);
+    return this.usuarios;
     }
   }

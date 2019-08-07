@@ -14,17 +14,17 @@
     <ion-grid>
       <ion-row>
         <ion-col justify-content-center col-12 col-sm>
-          <ion-header text-center nowrap>Estimado(a) {{usuario.nombre}} tus respuestas son las siguientes: </ion-header>
+          <ion-header text-center nowrap>Estimado(a) <strong color="success"> {{usuario.nombreUser}} </strong> tus respuestas son las siguientes: </ion-header>
         </ion-col>
       </ion-row>
 
-      <ion-row *ngFor="let pregunta of usuario.preguntas">
+      <ion-row *ngFor="let respuesta of usuario.respuestas">
         <ion-col col-12 col-sm>
           <ion-list>
             <ion-list-header text-start text-capitalize>
-              <ion-label>{{pregunta.idPregunta}} ) {{pregunta.glosa}}</ion-label>
+              <ion-label>{{respuesta.idPregunta}} ) {{respuesta.glosa}}</ion-label>
             </ion-list-header>
-            <ion-item text-center text-capitalize  color="warning">{{pregunta.respuesta}}</ion-item>
+            <ion-item text-center text-capitalize  color="warning">{{respuesta.respuesta}}</ion-item>
           </ion-list>
         </ion-col>
       </ion-row>

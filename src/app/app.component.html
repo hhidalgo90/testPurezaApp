@@ -1,6 +1,6 @@
 <ion-app>  
   <ion-split-pane>
-    <ion-menu (ionWillOpen)="esLogueado()">
+    <ion-menu (ionWillOpen)="esLogueado()" type="overlay">
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
@@ -27,6 +27,6 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet main></ion-router-outlet>
+    <ion-router-outlet main [swipeGesture]="false"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

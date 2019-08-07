@@ -20,6 +20,7 @@ import { firebaseConfig } from './credenciales-firebase';
 import { MostrarRespuestasPage } from './mostrar-respuestas/mostrar-respuestas.page';
 import { MostrarResultadoPage } from './mostrar-resultado/mostrar-resultado.page';
 import { LoginPage } from './login/login.page';
+import { MostrarUsuariosPage} from './mostrar-usuarios/mostrar-usuarios.page';
 
 @NgModule({
   declarations: [AppComponent,
@@ -29,7 +30,8 @@ import { LoginPage } from './login/login.page';
     ModalPreguntasPage,
     MostrarRespuestasPage,
     MostrarResultadoPage,
-    LoginPage    ],
+    LoginPage,
+    MostrarUsuariosPage],
   entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
   imports: [
     BrowserModule,

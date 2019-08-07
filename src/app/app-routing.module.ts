@@ -7,6 +7,7 @@ import { MostrarRespuestasPage } from './mostrar-respuestas/mostrar-respuestas.p
 import { MostrarResultadoPage } from './mostrar-resultado/mostrar-resultado.page';
 import { LoginPage } from './login/login.page';
 import { AutenticacionGuard } from './services/autenticacion.guard'; //import para agregarlo a cada path que requiera acceso solo de usuario logueados
+import { MostrarUsuariosPage} from './mostrar-usuarios/mostrar-usuarios.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: 'mostrarRespuestas', component: MostrarRespuestasPage, canActivate: [AutenticacionGuard] },//solo para usuarios logueados
   { path: 'mostrarResultado', component: MostrarResultadoPage },
   { path: 'login', component: LoginPage },
+  { path: 'mostrarUsuarios', component: MostrarUsuariosPage , canActivate: [AutenticacionGuard] },//solo para usuarios logueados
+
 
 
 

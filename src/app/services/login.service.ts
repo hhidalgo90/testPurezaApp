@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { LocationStrategy } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class LoginService {
   constructor() { }
 
   loginUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
+    console.log("loginUser");
+    
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 

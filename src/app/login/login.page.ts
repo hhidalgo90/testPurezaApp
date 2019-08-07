@@ -38,11 +38,13 @@ export class LoginPage implements OnInit {
       await this.loading.present();
   
       this.loginService.loginUser(this.emailUser, this.passUser).then(
-        () => {
+        respuesta => {
+          console.log(respuesta);
+          
           this.loading.dismiss().then(() => {
             window.sessionStorage.setItem("usuarioLogueado", "true"); //variable de session para guardar si el usuario esta logueado
             console.log("iniciar sesion: esLogueado: " + window.sessionStorage.getItem("usuarioLogueado"));
-            this.router.navigateByUrl('mostrarRespuestas');
+            this.router.navigateByUrl('mostrarUsuarios');
           });
         },
         error => {
