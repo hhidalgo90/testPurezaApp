@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../clases/usuario';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'; //Router de angular para hacer navegacion.
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-mostrar-respuestas',
@@ -8,8 +8,23 @@ import { Router, ActivatedRoute } from '@angular/router'; //Router de angular pa
   styleUrls: ['./mostrar-respuestas.page.scss'],
 })
 export class MostrarRespuestasPage implements OnInit {
+  @ViewChild(IonContent) content: IonContent; //Se usa para obtener contenido y despues hacer scroll top.
+  
   public usuario = new Array;
+  inicio : number;
+  tope : number;
+  numeroPreguntas : number;
+  mostrarBtnSiguiente : boolean;
+  mostrarBtnFinalizar : boolean;
+  mostrarBtnAtras : boolean;
+
+
   constructor(public router: Router, public route: ActivatedRoute) { 
+    this.inicio = 0;
+    this.tope = 5;
+    this.mostrarBtnSiguiente = true; 
+    this.mostrarBtnFinalizar = false;
+    this.mostrarBtnAtras = false;
     console.log("constructor");
     
     this.route.queryParams.subscribe(params => {
@@ -22,4 +37,57 @@ export class MostrarRespuestasPage implements OnInit {
 
   ngOnInit() {
   }
+
+  /**
+ * Metodo para avanzar en el listado de preguntas.
+ */
+siguientePregunta(){
+  this.numeroPreguntas = this.usuario.length;
+  this.inicio+=5;
+  this.tope+=5;
+  if(this.tope < this.numeroPreguntas){
+    if(this.inicio > 0){
+      this.mostrarBtnAtras = true;
+    }
+    this.content.scrollToTop(600);
+  }
+  else{
+    console.log("Se acabo esta mierda");
+    this.mostrarBtnSiguiente = false;
+    this.mostrarBtnFinalizar = true;
+  }
+}
+
+/**
+ * Metodo para volver atras en el listado de preguntas.
+ */
+preguntaAnterior(){
+  this.numeroPreguntas = this.usuario.length;
+  this.inicio-=5;
+  this.tope-=5;
+  if( this.inicio > 0){
+    if(this.tope != this.numeroPreguntas){
+      this.mostrarBtnSiguiente = true;
+      this.mostrarBtnFinalizar = false;
+    }
+    this.content.scrollToTop(600);
+  }
+  else{
+    console.log("Se acabo esta mierda");
+    this.mostrarBtnSiguiente = true;
+    this.mostrarBtnFinalizar = false;
+    if(this.inicio <= 0){
+      this.mostrarBtnAtras = false;
+    }
+  }
+}
+
+/**
+ * Metodo que obtiene evento de scroll en el content.
+ */
+doInfinite(infiniteScrollEvent) {
+  infiniteScrollEvent.target.complete();
+  this.inicio =0;
+  this.tope = 5;
+}
 }

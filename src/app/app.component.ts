@@ -59,10 +59,10 @@ export class AppComponent {
       message: "Cerrando Sesion"
     });
     this.loginService.logoutUser().then(()=>{
+      loading.dismiss();
       console.log("llegue a cerrar sesion");
       window.sessionStorage.setItem("usuarioLogueado" , "false");
-      this.router.navigateByUrl('home');
-      loading.dismiss();
+      this.router.navigateByUrl('home');      
     });
 
     return await loading.present();
