@@ -14,7 +14,7 @@ import { MenuController } from '@ionic/angular';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-
+  public rutaUserLogueado = "";
   public appPages = [
     {
       title: 'Home',
@@ -25,14 +25,10 @@ export class AppComponent {
       title: 'Empezar test',
       url: '/datosPersonales',
       icon: 'list'
-    },
-    {
-      title: 'Ver resultados',
-      url:  !this.esLogueado() ? '/login': '/mostrarUsuarios',
-      icon: 'list'
     }
     
   ];
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -68,14 +64,33 @@ export class AppComponent {
     return await loading.present();
   }
 
-  esLogueado():boolean{
-        
+  esLogueado(){
+    console.log("esLogueado");
+    
     var usuarioLogueado = window.sessionStorage.getItem("usuarioLogueado");
     if(usuarioLogueado == "true"){
+      console.log("esLogueado");
+      this.rutaUserLogueado = "/mostrarUsuarios";
       return true;
     }
     else{
+      console.log("NO esLogueado");
+      this.rutaUserLogueado = "/login";
       return false;
+    }
+  }
+
+  navigate(){
+    var usuarioLogueado = window.sessionStorage.getItem("usuarioLogueado");
+    if(usuarioLogueado == "true"){
+      console.log("esLogueado");
+      this.rutaUserLogueado = "/mostrarUsuarios";
+      this.router.navigateByUrl(this.rutaUserLogueado);
+    }
+    else{
+      console.log("NO esLogueado");
+      this.rutaUserLogueado = "/login";
+      this.router.navigateByUrl(this.rutaUserLogueado);
     }
   }
 

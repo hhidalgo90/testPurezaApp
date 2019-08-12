@@ -16,6 +16,14 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item  [routerDirection]="'root'" (click)="navigate()">
+              <ion-icon  slot="start" name="list"></ion-icon>
+              <ion-label >
+                Ver resultados
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
           <ion-menu-toggle *ngIf="esLogueado()" auto-hide="false">
           <ion-item  [routerDirection]="'root'" item-left style="color: red" (click)="cerrarSesion()">
             <ion-icon name="md-exit" slot="start"></ion-icon>
