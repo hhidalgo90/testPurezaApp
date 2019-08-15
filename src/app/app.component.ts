@@ -64,18 +64,12 @@ export class AppComponent {
     return await loading.present();
   }
 
-  esLogueado(){
-    console.log("esLogueado");
-    
+  esLogueado(){    
     var usuarioLogueado = window.sessionStorage.getItem("usuarioLogueado");
     if(usuarioLogueado == "true"){
-      console.log("esLogueado");
-      this.rutaUserLogueado = "/mostrarUsuarios";
       return true;
     }
     else{
-      console.log("NO esLogueado");
-      this.rutaUserLogueado = "/login";
       return false;
     }
   }
@@ -83,12 +77,10 @@ export class AppComponent {
   navigate(){
     var usuarioLogueado = window.sessionStorage.getItem("usuarioLogueado");
     if(usuarioLogueado == "true"){
-      console.log("esLogueado");
       this.rutaUserLogueado = "/mostrarUsuarios";
       this.router.navigateByUrl(this.rutaUserLogueado);
     }
     else{
-      console.log("NO esLogueado");
       this.rutaUserLogueado = "/login";
       this.router.navigateByUrl(this.rutaUserLogueado);
     }
