@@ -10,12 +10,21 @@
 </ion-header>
 
 <ion-content>
-<div padding> 
-  <ion-item *ngFor="let item of listaUsuarios">
-    <ion-avatar slot="start">
-      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-    </ion-avatar>
-    <ion-label (click)="mostrarRespuestas(item.nombreUser)">{{item.nombreUser}}</ion-label>
-  </ion-item>
-</div>
+  <div padding>
+    <div *ngFor="let item of listaUsuarios">
+      <ion-grid>
+        <ion-row class="ion-justify-content-start">
+          <ion-col size="3">
+            <ion-avatar>
+              <img src="/assets/avatar.svg">
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="6">
+            <ion-list-header (click)="mostrarRespuestas(item.nombreUser)">{{item.nombreUser}}
+            </ion-list-header>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 </ion-content>
