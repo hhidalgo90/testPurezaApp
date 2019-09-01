@@ -6,25 +6,39 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [scrollEvents]= "true" (ionScroll)="eventoScroll($event)">
   <div padding>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content>
-        <ion-list *ngFor="let pregunta of listaPreguntas | slice: inicio:tope">
+        <ion-list>
+          <div *ngFor="let pregunta of listaPreguntas | slice: inicio:tope; let i = index;" (click)="scrollASiguientePregunta()">
           <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
-            <ion-list-header>
-              {{pregunta.idPregunta}} ) {{pregunta.glosa}}
+            <ion-list-header class="ion-text-capitalize">
+              <h4>{{pregunta.idPregunta}} ) {{pregunta.glosa}}</h4>
             </ion-list-header>
 
             <ion-item *ngFor="let opcion of pregunta.opciones">
-              <ion-label>{{opcion}}</ion-label>
+              <ion-label class="ion-text-capitalize">{{opcion}}</ion-label>
               <ion-radio value="{{opcion}}" name="{{pregunta.id}}"></ion-radio>
             </ion-item>
           </ion-radio-group>
+        </div>
         </ion-list>
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="offSetTop < 300">
+    <ion-fab-button (click)="scrollAbajo()">
+      <ion-icon name="arrow-down"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="offSetTop > 300">
+      <ion-fab-button (click)="scrollArriba()">
+        <ion-icon name="arrow-up"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>
 
 

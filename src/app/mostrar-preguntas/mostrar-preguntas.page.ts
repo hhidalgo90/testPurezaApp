@@ -1,8 +1,8 @@
-import { Component, OnInit ,ViewChild, Injectable} from '@angular/core';
+import { Component, OnInit ,ViewChild, Injectable, ElementRef} from '@angular/core';
 import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
 import { Pregunta } from '../clases/pregunta';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'; //Router de angular para hacer navegacion.
-import { ModalController, IonContent, LoadingController, AlertController } from '@ionic/angular'; //Libreria para utilizar modal. LoadingController, AlertController para mostrar un 'cargando' y mostrar alert en caso de error
+import { ModalController, IonContent, LoadingController, AlertController, IonList, IonRadioGroup } from '@ionic/angular'; //Libreria para utilizar modal. LoadingController, AlertController para mostrar un 'cargando' y mostrar alert en caso de error
 import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //Pagina utilizada como modal.
 import { Usuario } from '../clases/usuario';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -15,6 +15,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Injectable() 
 export class MostrarPreguntasPage implements OnInit {
   @ViewChild(IonContent) content: IonContent; //Se usa para obtener contenido y despues hacer scroll top.
+  @ViewChild (IonList, {read : ElementRef}) list : ElementRef;
 
   public preguntas : Pregunta[]  = new Array();
   unit ="";
@@ -28,6 +29,10 @@ export class MostrarPreguntasPage implements OnInit {
   public listaPreguntas : Array<Object> = new Array();
   public usuario = new Usuario;
   formPreguntas : FormGroup;
+  scrollTo = 0;
+  block = "end";
+  behavior = "smooth";
+  offSetTop = 0;
 
   constructor(private obtenerPreguntasService : ObtenerPreguntasService,private router: Router, public modalController: ModalController, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController , public route: ActivatedRoute) { 
@@ -103,6 +108,7 @@ siguientePregunta(){
   this.numeroPreguntas = this.listaPreguntas.length;
   this.inicio+=5;
   this.tope+=5;
+  this.scrollTo = 0;
   if(this.tope < this.numeroPreguntas){
     if(this.inicio > 0){
       this.mostrarBtnAtras = true;
@@ -215,4 +221,33 @@ ordenarPreguntas(listaPreguntas: Object[]): any {
   });
   return listaPreguntas;
 };
+
+/**
+ * Metodo que realiza el scroll a la siguiente pregunta una vez esta ha sido contestada.
+ */
+  scrollASiguientePregunta() {
+    this.scrollTo = this.scrollTo + 1;
+
+    let arr = this.list.nativeElement.children;
+    let item = arr[this.scrollTo];
+
+    this.tope;
+    if (this.scrollTo < this.tope) {
+      item.scrollIntoView({ behavior: this.behavior, block: this.block });
+    }
+  }
+
+  scrollAbajo(){
+    this.content.scrollToBottom();
+  }
+
+  scrollArriba(){
+    this.content.scrollToTop();
+  }
+
+  eventoScroll(e){
+    console.log(e);
+    this.offSetTop = e.detail.scrollTop;
+    
+  }
 }
