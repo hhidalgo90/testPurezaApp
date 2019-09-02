@@ -30,7 +30,7 @@ export class MostrarPreguntasPage implements OnInit {
   public usuario = new Usuario;
   formPreguntas : FormGroup;
   scrollTo = 0;
-  block = "end";
+  block = "start";
   behavior = "smooth";
   offSetTop = 0;
 
@@ -238,15 +238,15 @@ ordenarPreguntas(listaPreguntas: Object[]): any {
   }
 
   scrollAbajo(){
-    this.content.scrollToBottom();
+    this.content.scrollToBottom(2000);
   }
 
   scrollArriba(){
-    this.content.scrollToTop();
+    this.scrollTo = 0;
+    this.content.scrollToTop(2000);
   }
 
   eventoScroll(e){
-    console.log(e);
     this.offSetTop = e.detail.scrollTop;
     
   }

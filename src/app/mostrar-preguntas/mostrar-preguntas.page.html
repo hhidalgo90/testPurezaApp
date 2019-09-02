@@ -11,18 +11,20 @@
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content>
         <ion-list>
-          <div *ngFor="let pregunta of listaPreguntas | slice: inicio:tope; let i = index;" (click)="scrollASiguientePregunta()">
-          <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta">
+          <div class="estiloDiv" justify-content-center  *ngFor="let pregunta of listaPreguntas | slice: inicio:tope; let i = index;" (click)="scrollASiguientePregunta()">
+          <ion-card color="light">
+          <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta" >
             <ion-list-header class="ion-text-capitalize">
               <h4>{{pregunta.idPregunta}} ) {{pregunta.glosa}}</h4>
             </ion-list-header>
 
-            <ion-item *ngFor="let opcion of pregunta.opciones">
+            <ion-item *ngFor="let opcion of pregunta.opciones" lines="none" color="light">
               <ion-label class="ion-text-capitalize">{{opcion}}</ion-label>
-              <ion-radio value="{{opcion}}" name="{{pregunta.id}}"></ion-radio>
+              <ion-radio value="{{opcion}}" name="{{pregunta.id}}" mode="md"></ion-radio>
             </ion-item>
           </ion-radio-group>
-        </div>
+        </ion-card>
+      </div>
         </ion-list>
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>

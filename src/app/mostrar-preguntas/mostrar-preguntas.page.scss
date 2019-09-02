@@ -2,9 +2,12 @@ ion-list-header{
     text-align: left;
 }
 
-ion-radio-group{
-    display: block;
-    margin: 0 auto; // Make the photo center align
-    width: auto;    // Adjust the width according to height
-    height: 60vh;   // Height = 50% of screen
-  }
+//Aplico solo estilos a los card que estan dentro de la clase estiloDiv.
+.estiloDiv{
+    height: 100vh;
+    display: flex;
+    ion-card{
+        width: 90vh;
+        height: 70vh;   // Height = 50% of screen
+    }
+}
