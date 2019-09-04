@@ -119,6 +119,7 @@ siguientePregunta(){
     console.log("Se acabo esta mierda");
     this.mostrarBtnSiguiente = false;
     this.mostrarBtnFinalizar = true;
+    this.content.scrollToTop(600);
   }
 }
 
@@ -143,6 +144,7 @@ preguntaAnterior(){
     if(this.inicio <= 0){
       this.mostrarBtnAtras = false;
     }
+    this.content.scrollToTop(600);
   }
 }
 
