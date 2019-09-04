@@ -13,7 +13,7 @@
         <ion-list>
           <div class="estiloDiv" justify-content-center  *ngFor="let pregunta of listaPreguntas | slice: inicio:tope; let i = index;" (click)="scrollASiguientePregunta()">
           <ion-card color="light">
-          <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta" >
+          <ion-radio-group [(ngModel)]="pregunta.respuesta" name="respuesta" [id]="pregunta.idPregunta">
             <ion-list-header class="ion-text-capitalize">
               <h4>{{pregunta.idPregunta}} ) {{pregunta.glosa}}</h4>
             </ion-list-header>

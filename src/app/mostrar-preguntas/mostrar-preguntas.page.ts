@@ -2,7 +2,7 @@ import { Component, OnInit ,ViewChild, Injectable, ElementRef} from '@angular/co
 import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
 import { Pregunta } from '../clases/pregunta';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'; //Router de angular para hacer navegacion.
-import { ModalController, IonContent, LoadingController, AlertController, IonList, IonRadioGroup } from '@ionic/angular'; //Libreria para utilizar modal. LoadingController, AlertController para mostrar un 'cargando' y mostrar alert en caso de error
+import { ModalController, IonContent, LoadingController, AlertController, IonList, IonRadioGroup} from '@ionic/angular'; //Libreria para utilizar modal. LoadingController, AlertController para mostrar un 'cargando' y mostrar alert en caso de error
 import { ModalPreguntasPage } from '../modal-preguntas/modal-preguntas.page'; //Pagina utilizada como modal.
 import { Usuario } from '../clases/usuario';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -233,7 +233,7 @@ ordenarPreguntas(listaPreguntas: Object[]): any {
 
     this.tope;
     if (this.scrollTo < this.tope) {
-      item.scrollIntoView({ behavior: this.behavior, block: this.block });
+      item.scrollIntoView({ block: this.block ,behavior: this.behavior });
     }
   }
 
