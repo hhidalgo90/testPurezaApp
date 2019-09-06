@@ -228,14 +228,12 @@ ordenarPreguntas(listaPreguntas: Object[]): any {
  * Metodo que realiza el scroll a la siguiente pregunta una vez esta ha sido contestada.
  */
   scrollASiguientePregunta() {
-    this.scrollTo = this.scrollTo + 1;
+    this.scrollTo++;
+    let itemPregunta = <HTMLElement> document.getElementsByClassName("estiloDiv")[this.scrollTo];
+    let posicionPregunta = itemPregunta.offsetTop; //Trae la distancia desde el content hasta la posicion del elemento.
 
-    let arr = this.list.nativeElement.children;
-    let item = arr[this.scrollTo];
-
-    this.tope;
     if (this.scrollTo < this.tope) {
-      item.scrollIntoView({ block: this.block ,behavior: this.behavior });
+      this.content.scrollToPoint(0,posicionPregunta,1500);
     }
   }
 
@@ -249,7 +247,6 @@ ordenarPreguntas(listaPreguntas: Object[]): any {
   }
 
   eventoScroll(e){
-    this.offSetTop = e.detail.scrollTop;
-    
+    this.offSetTop = e.detail.scrollTop;    
   }
 }
