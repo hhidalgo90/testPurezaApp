@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router'; //Router de angular pa
 import { Usuario } from '../clases/usuario';
 import { Chart } from 'chart.js';
 import { LoadingController } from '@ionic/angular';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-mostrar-resultado',
@@ -21,6 +22,56 @@ export class MostrarResultadoPage implements OnInit {
   porcentajePureza = 0;
   nombreUsuario: String;
   descripcion: string;
+
+  public options: any = {
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+  },
+  title: {
+      text: 'Browser market shares in January, 2018'
+  },
+  tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+      pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+              enabled: false
+          },
+          showInLegend: true
+      }
+  },
+  series: [{
+      name: 'Brands',
+      colorByPoint: true,
+      data: [{
+          name: 'Chrome',
+          y: 61.41,
+          sliced: true,
+          selected: true
+      }, {
+          name: 'Internet Explorer',
+          y: 11.84
+      }, {
+          name: 'Firefox',
+          y: 10.85
+      }, {
+          name: 'Edge',
+          y: 4.67
+      }, {
+          name: 'Safari',
+          y: 4.18
+      }, {
+          name: 'Other',
+          y: 7.05
+      }]
+  }]
+  }
   
   constructor(public router: Router, public route: ActivatedRoute,  public loadingCtrl: LoadingController) {
     this.route.queryParams.subscribe(params => {
@@ -35,7 +86,7 @@ export class MostrarResultadoPage implements OnInit {
    ngOnInit() {
     this.mostrarLoading();
     this.analizarRespuestas();
-    this.crearGrafico();
+    Highcharts.chart(this.doughnutCanvas.nativeElement, this.options);
     
   }
   async mostrarLoading() {
@@ -138,6 +189,11 @@ export class MostrarResultadoPage implements OnInit {
     // });
     
   }
+
+  cargarGrafico(){
+    
+  }
+
   analizarRespuestas() {
     this.porcentajePureza = 90;
     this.nombreUsuario = this.usuario.nombre;
