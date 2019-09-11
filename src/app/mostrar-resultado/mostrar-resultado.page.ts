@@ -28,10 +28,13 @@ export class MostrarResultadoPage implements OnInit {
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: false,
-      type: 'pie'
+      type: 'pie',
+      height :500,
+      width : 300,
+      margin: [0, 0, 0, 0]
   },
   title: {
-      text: 'Browser market shares in January, 2018'
+      text: 'Resultado'
   },
   tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

@@ -21,12 +21,14 @@
 
       <ion-row *ngFor="let respuesta of usuario.respuestas | slice: inicio:tope">
         <ion-col col-12 col-sm>
+          <ion-item>
           <ion-list>
             <ion-list-header class="ion-text-capitalize">
               <h4>{{respuesta.idPregunta}} ) {{respuesta.glosa}}</h4>
             </ion-list-header>
             <ion-item text-center text-capitalize color="success">{{respuesta.respuesta}}</ion-item>
           </ion-list>
+        </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
