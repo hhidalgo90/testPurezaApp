@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +17,10 @@ export class LoginPage implements OnInit {
   passUser = "";
   formLogin : FormGroup;
   public loading: HTMLIonLoadingElement;
-  constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, private loginService: LoginService, private router: Router) {
+  mostrarEmailPass : any;
+
+  constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, private loginService: LoginService, private router: Router, private fb: Facebook,
+    private fireAuth: AngularFireAuth) {
     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.formLogin = new FormGroup({      
       passUser: new FormControl('', [Validators.required]),
@@ -23,6 +29,7 @@ export class LoginPage implements OnInit {
    }
 
   ngOnInit() {
+    this.mostrarEmailPass = false;
   }
 
   /**
@@ -58,4 +65,44 @@ export class LoginPage implements OnInit {
         }
       );    
   }
+
+  /**
+   * Metodo que permite el logueo por facebook.
+   */
+  async loginFeibu() {
+
+    this.fb.login([this.emailUser])
+      .then((response: FacebookLoginResponse) => {
+        this.onLoginSuccess(response);
+        console.log(response.authResponse.accessToken);
+      }).catch((error) => {
+        console.log(error)
+        alert('error:' + error)
+      });
+  }
+
+
+  onLoginSuccess(res: FacebookLoginResponse) {
+    const  token  = res;
+    const credential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+    this.fireAuth.auth.signInWithCredential(credential)
+      .then((response) => {
+        console.log(response);
+        window.sessionStorage.setItem("usuarioLogueado", "true"); //variable de session para guardar si el usuario esta logueado
+        this.router.navigate(["/facebookUser"]);
+        this.loading.dismiss();
+      })
+  }
+  onLoginError(err) {
+    console.log(err);
+  }
+
+  loginEmailPass(){
+    this.mostrarEmailPass = true;
+  }
+
+  mostrarMenu(){
+    this.mostrarEmailPass = false;
+  }
+
 }

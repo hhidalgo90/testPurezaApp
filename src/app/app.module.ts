@@ -21,6 +21,9 @@ import { MostrarRespuestasPage } from './mostrar-respuestas/mostrar-respuestas.p
 import { MostrarResultadoPage } from './mostrar-resultado/mostrar-resultado.page';
 import { LoginPage } from './login/login.page';
 import { MostrarUsuariosPage} from './mostrar-usuarios/mostrar-usuarios.page';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FacebookUserPage } from './facebook-user/facebook-user.page';
 
 @NgModule({
   declarations: [AppComponent,
@@ -31,7 +34,8 @@ import { MostrarUsuariosPage} from './mostrar-usuarios/mostrar-usuarios.page';
     MostrarRespuestasPage,
     MostrarResultadoPage,
     LoginPage,
-    MostrarUsuariosPage],
+    MostrarUsuariosPage,
+    FacebookUserPage],
   entryComponents: [MostrarPreguntasPage,ModalPreguntasPage],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ import { MostrarUsuariosPage} from './mostrar-usuarios/mostrar-usuarios.page';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
-    MostrarPreguntasPage
+    MostrarPreguntasPage,
+    Facebook,
+    AngularFireAuth
   ],
   bootstrap: [AppComponent]
 })

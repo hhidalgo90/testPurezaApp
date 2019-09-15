@@ -68,4 +68,9 @@ export class MostrarUsuariosPage implements OnInit {
     this.router.navigate(['/mostrarRespuestas'], navigationExtras);
   }
 
+  eliminarUsuario(nombreUser){
+    console.log("eliminar usuario " + nombreUser);
+    
+  }
+
 }

@@ -10,8 +10,9 @@
 </ion-header>
 
 <ion-content>
-  <div padding *ngFor="let item of listaUsuarios">
-    <ion-item>
+<div padding *ngFor="let item of listaUsuarios">
+    <ion-item-sliding id="item1080">
+    <ion-item  href="">
       <ion-grid>
           <ion-row>
             <ion-col align-self-start>
@@ -19,15 +20,22 @@
                     <img src="/assets/avatar.svg">
                   </ion-avatar>
             </ion-col>
-            <ion-col align-self-center size="6" class="ion-text-center ion-text-capitalize">
+            <ion-col align-self-center size="9" class="ion-text-center ion-text-capitalize">
                 <ion-label (click)="mostrarRespuestas(item.nombreUser)">{{item.nombreUser}}
                   </ion-label>
             </ion-col>
-            <ion-col align-self-center>
-              <ion-icon name="trash"  style="color: red"></ion-icon>
-            </ion-col>
           </ion-row>
-      </ion-grid>     
+      </ion-grid>    
+      <ion-note slot="end">
+        </ion-note>
+ 
     </ion-item>
-  </div>
+  
+      <ion-item-options side="end">
+        <ion-item-option color="danger">
+          <ion-icon slot="icon-only" name="trash" (click)="eliminarUsuario(item.nombreUser)"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </div>      
 </ion-content>
