@@ -3,6 +3,7 @@ import { LoadingController } from '@ionic/angular';
 import { ObtenerPreguntasService } from '../services/obtener-preguntas.service';
 import { Usuario } from '../clases/usuario';
 import { Router, NavigationExtras } from '@angular/router';
+import { ObjetoUsuario } from '../clases/objeto-usuario';
 
 @Component({
   selector: 'app-mostrar-usuarios',
@@ -21,6 +22,10 @@ export class MostrarUsuariosPage implements OnInit {
   {
     nombre: "tres"
   }];
+  public datosUsuario :any[]= [];
+
+  public objetoUsuario : Array<ObjetoUsuario> = new Array();
+  
   constructor(private loadingCtrl: LoadingController, private obtenerPreguntasService : ObtenerPreguntasService, private router : Router) {
     this.usuario = new Usuario();
    }
@@ -37,15 +42,54 @@ export class MostrarUsuariosPage implements OnInit {
       duration: 1000,
       message: "Obteniendo Usuarios"
     });
-    this.obtenerPreguntasService.obtenerColeccionUsuariosDesdeFirebase().valueChanges()
-    .subscribe(respuesta=>{
-      this.listaUsuarios = respuesta;
-      console.log(this.listaUsuarios);
-      console.log(respuesta);
-      loading.dismiss();
-    });
+    this.obtenerPreguntasService.obtenerColeccionUsuariosDesdeFirebase().snapshotChanges()
+    .subscribe(this.obtenerDatosUsuario)
+  }
+      
+     // {
+     // this.listaUsuarios = respuesta;
 
-    return await loading.present();
+     // this.obtenerDatosUsuario(this.listaUsuarios);
+      //this.objetoUsuario[0] = new ObjetoUsuario();
+      //console.log(this.listaUsuarios);
+
+     // console.log(this.datosUsuario);
+      
+
+      //  for(let i = 0; i < respuesta.length; i++){
+      //    this.objetoUsuario = new ObjetoUsuario();
+      //    this.objetoUsuario.id = respuesta[i].payload.doc.id;
+         // this.datosUsuario.push(); = respuesta[0].payload.doc.data();
+          
+      //  } 
+      // console.log(respuesta[0].payload.doc.data());
+      // console.log(respuesta[0].payload.doc.id);
+     // loading.dismiss();
+    //});
+
+   // return await loading.present();
+  //}
+
+  obtenerDatosUsuario(respuesta: []){
+    console.log(respuesta);
+    let arreglo : any[] = new Array();
+    for(let indice in respuesta){
+      let element : any; 
+
+      element = respuesta[indice];
+      console.log(element.payload.doc.data().nombreUser);
+
+      arreglo.push({
+        id : element.payload.doc.id,
+        nombreUser : element.payload.doc.data().nombreUser
+      });
+    
+
+    }
+    console.log(arreglo);
+    this.datosUsuario = arreglo;
+    console.log(this.datosUsuario);
+    
   }
 
   mostrarRespuestas(nombreUser){
@@ -70,7 +114,7 @@ export class MostrarUsuariosPage implements OnInit {
 
   eliminarUsuario(nombreUser){
     console.log("eliminar usuario " + nombreUser);
-    
+    this.obtenerPreguntasService.eliminarUsuarioFirebase(nombreUser);
   }
 
 }

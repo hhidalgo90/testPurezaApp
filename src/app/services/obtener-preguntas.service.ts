@@ -77,4 +77,12 @@ export class ObtenerPreguntasService {
          console.log(this.usuarios.valueChanges.name);
     return this.usuarios;
     }
+
+    eliminarUsuarioFirebase(nombreUser){
+      this.firestore.collection('respuestasUsuarios').doc(nombreUser).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+    }
   }
