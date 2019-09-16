@@ -37,11 +37,12 @@ export class MostrarUsuariosPage implements OnInit {
       duration: 1000,
       message: "Obteniendo Usuarios"
     });
-    this.obtenerPreguntasService.obtenerColeccionUsuariosDesdeFirebase().valueChanges()
+    this.obtenerPreguntasService.obtenerColeccionUsuariosDesdeFirebase().snapshotChanges()
     .subscribe(respuesta=>{
       this.listaUsuarios = respuesta;
-      console.log(this.listaUsuarios);
-      console.log(respuesta);
+      //console.log(this.listaUsuarios);
+      console.log(respuesta[0].payload.doc.data());
+      console.log(respuesta[0].payload.doc.id);
       loading.dismiss();
     });
 
@@ -70,7 +71,7 @@ export class MostrarUsuariosPage implements OnInit {
 
   eliminarUsuario(nombreUser){
     console.log("eliminar usuario " + nombreUser);
-    
+    this.obtenerPreguntasService.eliminarUsuarioFirebase(nombreUser);
   }
 
 }
