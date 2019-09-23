@@ -43,33 +43,14 @@ export class MostrarUsuariosPage implements OnInit {
       message: "Obteniendo Usuarios"
     });
     this.obtenerPreguntasService.obtenerColeccionUsuariosDesdeFirebase().snapshotChanges()
-    .subscribe(this.obtenerDatosUsuario)
-  }
-      
-     // {
-     // this.listaUsuarios = respuesta;
-
-     // this.obtenerDatosUsuario(this.listaUsuarios);
-      //this.objetoUsuario[0] = new ObjetoUsuario();
+    .subscribe(respuesta=>{
+      this.listaUsuarios = respuesta;
       //console.log(this.listaUsuarios);
-
-     // console.log(this.datosUsuario);
-      
-
-      //  for(let i = 0; i < respuesta.length; i++){
-      //    this.objetoUsuario = new ObjetoUsuario();
-      //    this.objetoUsuario.id = respuesta[i].payload.doc.id;
-         // this.datosUsuario.push(); = respuesta[0].payload.doc.data();
-          
-      //  } 
-      // console.log(respuesta[0].payload.doc.data());
-      // console.log(respuesta[0].payload.doc.id);
-     // loading.dismiss();
-    //});
-
-   // return await loading.present();
-  //}
-
+      console.log(respuesta[0].payload.doc.data());
+      console.log(respuesta[0].payload.doc.id);
+      loading.dismiss();
+    });
+  }
   obtenerDatosUsuario(respuesta: []){
     console.log(respuesta);
     let arreglo : any[] = new Array();
