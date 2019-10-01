@@ -54,6 +54,7 @@ export class AppComponent {
       duration: 1000,
       message: "Cerrando Sesion"
     });
+    await loading.present();
     this.loginService.logoutUser().then(()=>{
       loading.dismiss();
       console.log("llegue a cerrar sesion");

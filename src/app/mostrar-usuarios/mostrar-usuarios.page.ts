@@ -46,12 +46,13 @@ export class MostrarUsuariosPage implements OnInit {
     .subscribe(respuesta=>{
       this.listaUsuarios = respuesta;
       //console.log(this.listaUsuarios);
-      console.log(respuesta[0].payload.doc.data());
-      console.log(respuesta[0].payload.doc.id);
+      //console.log(respuesta[0].payload.doc.data());
+      //console.log(respuesta[0].payload.doc.id);
+      this.obtenerDatosUsuario(this.listaUsuarios);
       loading.dismiss();
     });
   }
-  obtenerDatosUsuario(respuesta: []){
+  obtenerDatosUsuario(respuesta){
     console.log(respuesta);
     let arreglo : any[] = new Array();
     for(let indice in respuesta){
@@ -93,9 +94,15 @@ export class MostrarUsuariosPage implements OnInit {
     this.router.navigate(['/mostrarRespuestas'], navigationExtras);
   }
 
-  eliminarUsuario(nombreUser){
+  async eliminarUsuario(nombreUser){
+    const loading = await this.loadingCtrl.create({      
+      duration: 2000,
+      message: "Eliminando usuario"
+    });
+    await loading.present();
     console.log("eliminar usuario " + nombreUser);
     this.obtenerPreguntasService.eliminarUsuarioFirebase(nombreUser);
+    loading.dismiss();
   }
 
 }
