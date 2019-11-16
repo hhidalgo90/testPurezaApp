@@ -75,19 +75,19 @@ export class MostrarUsuariosPage implements OnInit {
   }
 
   mostrarRespuestas(nombreUser){
-    this.usuario.nombre = "asdasd";
     let respuestas = new Array;
 
     this.listaUsuarios.forEach(function (element:any){
       console.log(element);
-      if(element.nombreUser==nombreUser){
-        respuestas =element;
+      if(element.payload.doc.data().nombreUser==nombreUser){
+        respuestas =element.payload.doc.data().respuestas;
       }
     })
 
     let navigationExtras: NavigationExtras = {
       state: {
-        user: respuestas
+        user: respuestas,
+        nombreUsuario : nombreUser
       }
     };
     

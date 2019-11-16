@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "491144946698",
+    "firebase_url": "https://testpureza.firebaseio.com",
+    "project_id": "testpureza",
+    "storage_bucket": "testpureza.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491144946698:android:3ebda44a52e740bd48abf3",
+        "android_client_info": {
+          "package_name": "io.ionic.testPureza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491144946698-fnh4omm5q8i8nlhq509jocvqjcq0dhv2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.testPureza",
+            "certificate_hash": "3549a36df9308608c157cff134179ab58213e614"
+          }
+        },
+        {
+          "client_id": "491144946698-mii06frbamb1ruve61itb027s3ugtsdb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLIQ-SM7GdY-d38gUeFtgh6II2F2tK_Sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491144946698-mii06frbamb1ruve61itb027s3ugtsdb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "491144946698-ut9c2qbq1vbe8a2j9kq8ohi2pmb0cmav.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.ionic.testPureza"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

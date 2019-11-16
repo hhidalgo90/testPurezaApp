@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      <ion-img src="/assets/icon/logo.png" class="toolbar-background"></ion-img>
+      <ion-img src="assets/icon/logo.png" class="toolbar-background"></ion-img>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,19 +14,22 @@
     <ion-grid>
       <ion-row>
         <ion-col justify-content-center col-12 col-sm>
-          <ion-header text-center nowrap>Estimado(a) <strong color="success"> {{usuario.nombreUser}} </strong> tus
+          <ion-header text-center nowrap>Estimado(a) <strong color="success"> {{nombreUser}} </strong> tus
             respuestas son las siguientes: </ion-header>
         </ion-col>
       </ion-row>
 
-      <ion-row *ngFor="let respuesta of usuario.respuestas | slice: inicio:tope">
+      <ion-row *ngFor="let respuesta of usuario | slice: inicio:tope">
         <ion-col col-12 col-sm>
-          <ion-item>
+          <ion-item lines="full">
           <ion-list>
-            <ion-list-header class="ion-text-capitalize">
+            <ion-list-header class="ion-text-capitalize" expand="block">
               <h4>{{respuesta.idPregunta}} ) {{respuesta.glosa}}</h4>
             </ion-list-header>
-            <ion-item text-center text-capitalize color="success">{{respuesta.respuesta}}</ion-item>
+            <div *ngFor="let opcion of respuesta.opciones" expand="block">
+            <ion-item lines="none" text-center text-capitalize *ngIf="opcion == respuesta.respuesta" color="success" expand="block">{{opcion}}</ion-item>
+            <ion-item lines="none" text-center text-capitalize *ngIf="opcion != respuesta.respuesta" expand="block">{{opcion}}</ion-item>
+          </div>
           </ion-list>
         </ion-item>
         </ion-col>

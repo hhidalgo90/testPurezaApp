@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'; //Router de angular para hacer navegacion.
 import { IonContent } from '@ionic/angular';
-import { UsuarioRespuesta } from '../clases/usuario-respuesta';
 
 @Component({
   selector: 'app-mostrar-respuestas',
@@ -11,13 +10,14 @@ import { UsuarioRespuesta } from '../clases/usuario-respuesta';
 export class MostrarRespuestasPage implements OnInit {
   @ViewChild(IonContent) content: IonContent; //Se usa para obtener contenido y despues hacer scroll top.
   
-  public usuario = new UsuarioRespuesta;
+  public usuario = new Array;
   inicio : number;
   tope : number;
   numeroPreguntas : number;
   mostrarBtnSiguiente : boolean;
   mostrarBtnFinalizar : boolean;
   mostrarBtnAtras : boolean;
+  nombreUser : String;
 
 
   constructor(public router: Router, public route: ActivatedRoute) { 
@@ -31,7 +31,9 @@ export class MostrarRespuestasPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.usuario = this.router.getCurrentNavigation().extras.state.user;
+        this.nombreUser = this.router.getCurrentNavigation().extras.state.nombreUsuario;
         console.log(this.usuario);
+        console.log(this.nombreUser);
       }
     });
   }
@@ -43,7 +45,7 @@ export class MostrarRespuestasPage implements OnInit {
  * Metodo para avanzar en el listado de preguntas.
  */
 siguientePregunta(){
-  this.numeroPreguntas = this.usuario.respuestas.length;
+  this.numeroPreguntas = this.usuario.length;
   this.inicio+=5;
   this.tope+=5;
   if(this.tope < this.numeroPreguntas){
@@ -65,7 +67,7 @@ siguientePregunta(){
  * Metodo para volver atras en el listado de preguntas.
  */
 preguntaAnterior(){
-  this.numeroPreguntas = this.usuario.respuestas.length;
+  this.numeroPreguntas = this.usuario.length;
   this.inicio-=5;
   this.tope-=5;
   if( this.inicio > 0){
